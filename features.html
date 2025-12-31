@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | Mzuri Stores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* COMMON STYLES */
+        :root {
+            --primary: #2A5C9A;
+            --secondary: #E67E22;
+            --accent: #27AE60;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --danger: #E74C3C;
+            --warning: #F39C12;
+            --success: #2ECC71;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER STYLES */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4a7e;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        /* FOOTER STYLES */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* FEATURES PAGE SPECIFIC STYLES */
+        .page-header {
+            background: linear-gradient(rgba(42, 92, 154, 0.9), rgba(42, 92, 154, 0.8));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .features-categories {
+            padding: 80px 0;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-tab {
+            padding: 12px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-tab.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .category-tab:hover {
+            border-color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--primary);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .feature-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-ai {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+        
+        .badge-blockchain {
+            background-color: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+        }
+        
+        .badge-3d {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        
+        .badge-logistics {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-commerce {
+            background-color: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+        
+        .feature-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .status-available {
+            color: var(--success);
+        }
+        
+        .status-development {
+            color: var(--warning);
+        }
+        
+        .status-planned {
+            color: var(--gray);
+        }
+        
+        .feature-details-btn {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .phase-section {
+            margin: 60px 0;
+        }
+        
+        .phase-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .phase-number {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 40px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-tab {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-store logo-icon"></i>
+                <h1>Mzuri<span>Stores</span></h1>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="features.html" class="active">Features</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="shipping.html">Shipping</a></li>
+                    <li><a href="blockchain.html">Blockchain</a></li>
+                    <li><a href="ai-tools.html">AI Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-buttons">
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> Sign In</a>
+                <a href="dashboard.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Advanced Features</h1>
+            <p>Explore all 28 AI, Blockchain, and 3D Commerce features powering Mzuri Stores</p>
+        </div>
+    </section>
+
+    <!-- Features Categories -->
+    <section class="features-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">
+                    <i class="fas fa-layer-group"></i> All Features
+                </div>
+                <div class="category-tab" data-category="ai">
+                    <i class="fas fa-robot"></i> AI Features
+                </div>
+                <div class="category-tab" data-category="blockchain">
+                    <i class="fas fa-link"></i> Blockchain
+                </div>
+                <div class="category-tab" data-category="3d">
+                    <i class="fas fa-cube"></i> 3D & AR
+                </div>
+                <div class="category-tab" data-category="logistics">
+                    <i class="fas fa-shipping-fast"></i> Logistics
+                </div>
+                <div class="category-tab" data-category="commerce">
+                    <i class="fas fa-shopping-cart"></i> Commerce
+                </div>
+            </div>
+            
+            <!-- Phase 1 Features -->
+            <div class="phase-section">
+                <div class="phase-title">
+                    <div class="phase-number">1</div>
+                    <h2>Phase 1: Retail MVP Features</h2>
+                    <span style="margin-left: auto; color: var(--success); font-weight: 600;">Available Now</span>
+                </div>
+                
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-card" data-category="commerce">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h3>Product Catalog</h3>
+                            </div>
+                            <span class="feature-badge badge-commerce">Commerce</span>
+                        </div>
+                        <p>Complete product catalog with categories, filtering, and search functionality.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">Available Now</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="feature-card" data-category="commerce">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <h3>Payment Integration</h3>
+                            </div>
+                            <span class="feature-badge badge-commerce">Commerce</span>
+                        </div>
+                        <p>Visa, M-Pesa, Airtel Money, and cash on delivery payment options.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">Available Now</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="feature-card" data-category="ai">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3>Smart Product Recommender AI</h3>
+                            </div>
+                            <span class="feature-badge badge-ai">AI</span>
+                        </div>
+                        <p>Personalized product suggestions based on customer behavior.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">Available Now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 2 Features -->
+            <div class="phase-section">
+                <div class="phase-title">
+                    <div class="phase-number">2</div>
+                    <h2>Phase 2: Smart Commerce Features</h2>
+                    <span style="margin-left: auto; color: var(--warning); font-weight: 600;">Q3 2024</span>
+                </div>
+                
+                <div class="features-grid">
+                    <!-- Feature 4 -->
+                    <div class="feature-card" data-category="ai">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-signature"></i>
+                                </div>
+                                <h3>AI Documentation Wizard</h3>
+                            </div>
+                            <span class="feature-badge badge-ai">AI</span>
+                        </div>
+                        <p>Automatically fill export/import documents with AI-powered data extraction.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">Q3 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="feature-card" data-category="ai">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <h3>Real-time Translation Chat</h3>
+                            </div>
+                            <span class="feature-badge badge-ai">AI</span>
+                        </div>
+                        <p>Communicate with customers in any language with live translation.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">Q3 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="feature-card" data-category="logistics">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <h3>Real-time Inventory Heat Map</h3>
+                            </div>
+                            <span class="feature-badge badge-logistics">Logistics</span>
+                        </div>
+                        <p>Visualize stock levels across Dar es Salaam warehouses in real-time.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">Q3 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 3 Features -->
+            <div class="phase-section">
+                <div class="phase-title">
+                    <div class="phase-number">3</div>
+                    <h2>Phase 3: Immersive Experience Features</h2>
+                    <span style="margin-left: auto; color: var(--warning); font-weight: 600;">Q4 2024</span>
+                </div>
+                
+                <div class="features-grid">
+                    <!-- Feature 7 -->
+                    <div class="feature-card" data-category="3d">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <h3>3D Product Viewer</h3>
+                            </div>
+                            <span class="feature-badge badge-3d">3D & AR</span>
+                        </div>
+                        <p>Gyroscope-controlled 3D product visualization on mobile devices.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-code-branch status-development"></i>
+                            <span class="status-development">Development</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 8 -->
+                    <div class="feature-card" data-category="3d">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-vr-cardboard"></i>
+                                </div>
+                                <h3>AR Product Comparison</h3>
+                            </div>
+                            <span class="feature-badge badge-3d">3D & AR</span>
+                        </div>
+                        <p>Compare products side-by-side with augmented reality overlay.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-code-branch status-development"></i>
+                            <span class="status-development">Development</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 9 -->
+                    <div class="feature-card" data-category="ai">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3>Bulk Order Simulator</h3>
+                            </div>
+                            <span class="feature-badge badge-ai">AI</span>
+                        </div>
+                        <p>Predictive pricing AI for bulk orders with cost optimization.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-code-branch status-development"></i>
+                            <span class="status-development">Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature Comparison Table -->
+            <div style="margin: 80px 0;">
+                <h2 style="text-align: center; margin-bottom: 40px;">Feature Comparison</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Category</th>
+                            <th>Phase</th>
+                            <th>Status</th>
+                            <th>Complexity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3D Product Viewer</td>
+                            <td><span class="feature-badge badge-3d">3D & AR</span></td>
+                            <td>Phase 3</td>
+                            <td><span class="status-development">Development</span></td>
+                            <td>Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Blockchain Verifier</td>
+                            <td><span class="feature-badge badge-blockchain">Blockchain</span></td>
+                            <td>Phase 4</td>
+                            <td><span class="status-planned">Planned</span></td>
+                            <td>Enterprise</td>
+                        </tr>
+                        <tr>
+                            <td>AI Recommender</td>
+                            <td><span class="feature-badge badge-ai">AI</span></td>
+                            <td>Phase 1</td>
+                            <td><span class="status-available">Available</span></td>
+                            <td>Basic</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping Optimizer</td>
+                            <td><span class="feature-badge badge-logistics">Logistics</span></td>
+                            <td>Phase 4</td>
+                            <td><span class="status-planned">Planned</span></td>
+                            <td>Enterprise</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- CTA Section -->
+            <div style="text-align: center; padding: 60px 0;">
+                <h2>Ready to Power Your Business?</h2>
+                <p style="max-width: 800px; margin: 0 auto 30px;">Start with our Phase 1 features today and upgrade as we release new capabilities.</p>
+                <a href="dashboard.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Started with Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Mzuri Stores</h4>
+                    <p>Dar es Salaam's premier AI-powered e-commerce platform with integrated payment solutions and advanced business intelligence.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Feature Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="features.html#ai">AI Features</a></li>
+                        <li><a href="features.html#blockchain">Blockchain</a></li>
+                        <li><a href="features.html#3d">3D & AR</a></li>
+                        <li><a href="features.html#logistics">Logistics</a></li>
+                        <li><a href="ai-tools.html">All AI Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Samora Avenue, Dar es Salaam</li>
+                        <li><i class="fas fa-phone"></i> +255 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@mzuristores.co.tz</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Mzuri Stores. All rights reserved. | Built with React/Next.js, Node.js, PostgreSQL & AWS</p>
+                <p>Phase 1 MVP Complete | Phase 2 Development in Progress</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Active page highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Category filtering
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter features
+                    featureCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add interactive hover effects
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.feature-icon i');
+                    const colors = ['#2A5C9A', '#E67E22', '#27AE60', '#9b59b6', '#E74C3C'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    icon.style.color = randomColor;
+                    icon.style.transform = 'scale(1.1)';
+                    icon.style.transition = 'all 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.feature-icon i');
+                    icon.style.color = '';
+                    icon.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
