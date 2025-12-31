@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Mzuri Stores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* COMMON STYLES (Same as index.html) */
+        :root {
+            --primary: #2A5C9A;
+            --secondary: #E67E22;
+            --accent: #27AE60;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --danger: #E74C3C;
+            --warning: #F39C12;
+            --success: #2ECC71;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER STYLES */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4a7e;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        /* FOOTER STYLES */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* PRODUCTS PAGE SPECIFIC STYLES */
+        .page-header {
+            background: linear-gradient(rgba(42, 92, 154, 0.9), rgba(42, 92, 154, 0.8));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .products-section {
+            padding: 80px 0;
+        }
+        
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--primary);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            width: 100%;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--danger);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-badge.in-stock {
+            background-color: var(--success);
+        }
+        
+        .product-badge.low-stock {
+            background-color: var(--warning);
+        }
+        
+        .product-3d-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+        
+        .pagination-btn {
+            padding: 10px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .pagination-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .pagination-btn:hover:not(.active) {
+            border-color: var(--primary);
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-store logo-icon"></i>
+                <h1>Mzuri<span>Stores</span></h1>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="shipping.html">Shipping</a></li>
+                    <li><a href="blockchain.html">Blockchain</a></li>
+                    <li><a href="ai-tools.html">AI Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-buttons">
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> Sign In</a>
+                <a href="dashboard.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Discover quality products with AI recommendations, 3D viewing, and real-time inventory tracking</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="product-filters">
+                <button class="filter-btn active">All Products</button>
+                <button class="filter-btn">Electronics</button>
+                <button class="filter-btn">Fashion</button>
+                <button class="filter-btn">Home & Garden</button>
+                <button class="filter-btn">Groceries</button>
+                <button class="filter-btn">3D View Available</button>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge in-stock">In Stock</div>
+                        <div class="product-3d-badge"><i class="fas fa-cube"></i> 3D View</div>
+                        <img src="https://images.unsplash.com/photo-1600003263720-95b45a4035d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Smartphone" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h4>Tecno Spark 10 Pro</h4>
+                        <p>Latest smartphone with 90Hz display and 50MP camera</p>
+                        <div class="product-price">TSH 450,000</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i> 3D View</button>
+                            <button class="btn btn-primary btn-sm add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge low-stock">Low Stock</div>
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Fashion" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h4>Kitenge Dress Collection</h4>
+                        <p>Traditional African prints with modern designs</p>
+                        <div class="product-price">TSH 85,000</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline btn-sm"><i class="fas fa-heart"></i> Wishlist</button>
+                            <button class="btn btn-primary btn-sm add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge in-stock">In Stock</div>
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Electronics" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h4>Solar Power Bank 30,000mAh</h4>
+                        <p>Solar charging for reliable power during load shedding</p>
+                        <div class="product-price">TSH 120,000</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline btn-sm"><i class="fas fa-bolt"></i> AI Recommend</button>
+                            <button class="btn btn-primary btn-sm add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge in-stock">In Stock</div>
+                        <div class="product-3d-badge"><i class="fas fa-cube"></i> 3D View</div>
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1558&q=80" alt="Furniture" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h4>Mahogany Coffee Table</h4>
+                        <p>Handcrafted Tanzanian mahogany with traditional design</p>
+                        <div class="product-price">TSH 350,000</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i> 3D View</button>
+                            <button class="btn btn-primary btn-sm add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge in-stock">In Stock</div>
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Smart Watch" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h4>Smart Watch Series 5</h4>
+                        <p>Health monitoring with blood pressure and oxygen sensor</p>
+                        <div class="product-price">TSH 180,000</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline btn-sm"><i class="fas fa-heart"></i> Wishlist</button>
+                            <button class="btn btn-primary btn-sm add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge in-stock">In Stock</div>
+                        <div class="product-3d-badge"><i class="fas fa-cube"></i> 3D View</div>
+                        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Shoes" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h4>Leather Casual Shoes</h4>
+                        <p>Premium leather shoes for men, comfortable and durable</p>
+                        <div class="product-price">TSH 95,000</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i> 3D View</button>
+                            <button class="btn btn-primary btn-sm add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">4</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Mzuri Stores</h4>
+                    <p>Dar es Salaam's premier AI-powered e-commerce platform with integrated payment solutions and advanced business intelligence.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Payment Methods</h4>
+                    <ul class="footer-links">
+                        <li><i class="fab fa-cc-visa"></i> Visa / Mastercard</li>
+                        <li><i class="fas fa-mobile-alt"></i> M-Pesa Tanzania</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Airtel Money</li>
+                        <li><i class="fas fa-handshake"></i> Cash on Delivery</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Samora Avenue, Dar es Salaam</li>
+                        <li><i class="fas fa-phone"></i> +255 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@mzuristores.co.tz</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Mzuri Stores. All rights reserved. | Built with React/Next.js, Node.js, PostgreSQL & AWS</p>
+                <p>Phase 1 MVP Complete | Phase 2 Development in Progress</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Active page highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    let currentCount = parseInt(cartCount.textContent);
+                    cartCount.textContent = currentCount + 1;
+                    
+                    // Visual feedback
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Added!';
+                    this.style.backgroundColor = 'var(--success)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.backgroundColor = '';
+                    }, 1500);
+                });
+            });
+            
+            // Pagination
+            const paginationButtons = document.querySelectorAll('.pagination-btn');
+            paginationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!this.querySelector('i')) {
+                        paginationButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
