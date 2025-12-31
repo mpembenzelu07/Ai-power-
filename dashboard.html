@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Mzuri Stores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* COMMON STYLES */
+        :root {
+            --primary: #2A5C9A;
+            --secondary: #E67E22;
+            --accent: #27AE60;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --danger: #E74C3C;
+            --warning: #F39C12;
+            --success: #2ECC71;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER STYLES */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4a7e;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* DASHBOARD SPECIFIC STYLES */
+        .dashboard-container {
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .dashboard-sidebar {
+            width: 250px;
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+        
+        .dashboard-main {
+            flex: 1;
+            padding: 30px;
+            background-color: #f5f7fa;
+        }
+        
+        .sidebar-header {
+            padding: 0 25px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-header h3 {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 25px;
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        
+        .sidebar-menu a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .sidebar-menu a i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title h1 {
+            margin-bottom: 5px;
+        }
+        
+        .dashboard-title p {
+            color: var(--gray);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card.revenue {
+            border-left-color: var(--success);
+        }
+        
+        .stat-card.orders {
+            border-left-color: var(--primary);
+        }
+        
+        .stat-card.customers {
+            border-left-color: var(--warning);
+        }
+        
+        .stat-card.inventory {
+            border-left-color: var(--danger);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .stat-card.revenue .stat-icon {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        
+        .stat-card.orders .stat-icon {
+            background-color: rgba(42, 92, 154, 0.2);
+            color: var(--primary);
+        }
+        
+        .stat-card.customers .stat-icon {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+        
+        .stat-card.inventory .stat-icon {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .change-positive {
+            color: var(--success);
+        }
+        
+        .change-negative {
+            color: var(--danger);
+        }
+        
+        .dashboard-sections {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 1200px) {
+            .dashboard-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-orders {
+            margin-top: 20px;
+        }
+        
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .order-row:last-child {
+            border-bottom: none;
+        }
+        
+        .order-id {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-processing {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+        
+        .status-shipped {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        
+        .status-pending {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+        
+        .ai-insights {
+            background: linear-gradient(135deg, #2A5C9A, #1a3d6e);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .ai-insights h3 {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .insight-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .insight-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .inventory-alert {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid var(--danger);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        /* FOOTER STYLES */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .dashboard-sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                padding: 20px 0;
+            }
+            
+            .sidebar-menu {
+                display: flex;
+                overflow-x: auto;
+                padding: 0 15px;
+            }
+            
+            .sidebar-menu li {
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+            
+            .sidebar-menu a {
+                padding: 10px 15px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+            
+            .sidebar-menu a.active {
+                border-left: none;
+                border-bottom: 3px solid var(--accent);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar-menu {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-store logo-icon"></i>
+                <h1>Mzuri<span>Stores</span></h1>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="shipping.html">Shipping</a></li>
+                    <li><a href="blockchain.html">Blockchain</a></li>
+                    <li><a href="ai-tools.html">AI Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-buttons">
+                <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> John Business</a>
+                <a href="#" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-tachometer-alt"></i> Business Dashboard</h3>
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 5px;">Mzuri Stores Admin Panel</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active"><i class="fas fa-chart-bar"></i> Overview</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#"><i class="fas fa-robot"></i> AI Insights</a></li>
+                <li><a href="#"><i class="fas fa-shipping-fast"></i> Shipping</a></li>
+                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Invoices</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            
+            <div style="padding: 25px; margin-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h4 style="color: white; font-size: 1rem; margin-bottom: 15px;">Quick Actions</h4>
+                <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 10px;">
+                    <i class="fas fa-plus"></i> Add Product
+                </a>
+                <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center; color: white; border-color: white;">
+                    <i class="fas fa-download"></i> Export Data
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1>Business Overview</h1>
+                    <p>Welcome back! Here's what's happening with your business today.</p>
+                </div>
+                
+                <div class="user-profile">
+                    <div class="user-avatar">JB</div>
+                    <div>
+                        <h4 style="margin: 0;">John Business</h4>
+                        <p style="color: var(--gray); font-size: 0.9rem; margin: 0;">Admin Account</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card revenue">
+                    <div class="stat-header">
+                        <div>
+                            <h3>Today's Revenue</h3>
+                            <div class="stat-value">TSH 2.4M</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                    </div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up change-positive"></i>
+                        <span class="change-positive">+12% from yesterday</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card orders">
+                    <div class="stat-header">
+                        <div>
+                            <h3>Active Orders</h3>
+                            <div class="stat-value">147</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up change-positive"></i>
+                        <span class="change-positive">+8% from last week</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card customers">
+                    <div class="stat-header">
+                        <div>
+                            <h3>New Customers</h3>
+                            <div class="stat-value">42</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up change-positive"></i>
+                        <span class="change-positive">+15% from yesterday</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card inventory">
+                    <div class="stat-header">
+                        <div>
+                            <h3>Low Stock Items</h3>
+                            <div class="stat-value">8</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-down change-negative"></i>
+                        <span class="change-negative">Need restocking</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dashboard Sections -->
+            <div class="dashboard-sections">
+                <!-- Left Column -->
+                <div>
+                    <!-- Recent Orders -->
+                    <div class="section-card">
+                        <div class="section-header">
+                            <h3>Recent Orders</h3>
+                            <a href="#" class="btn btn-outline btn-sm">View All</a>
+                        </div>
+                        
+                        <div class="recent-orders">
+                            <div class="order-row">
+                                <div>
+                                    <div class="order-id">#ORD-7842</div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">Tecno Spark 10 Pro × 2</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; text-align: right;">TSH 900,000</div>
+                                    <div class="order-status status-processing">Processing</div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-row">
+                                <div>
+                                    <div class="order-id">#ORD-7841</div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">Kitenge Dress × 1, Shoes × 2</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; text-align: right;">TSH 265,000</div>
+                                    <div class="order-status status-shipped">Shipped</div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-row">
+                                <div>
+                                    <div class="order-id">#ORD-7840</div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">Solar Power Bank × 5</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; text-align: right;">TSH 600,000</div>
+                                    <div class="order-status status-pending">Payment Pending</div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-row">
+                                <div>
+                                    <div class="order-id">#ORD-7839</div>
+                                    <div style="font-size: 0.9rem; color: var(--gray);">Mahogany Table × 1</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; text-align: right;">TSH 350,000</div>
+                                    <div class="order-status status-shipped">Shipped</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Insights -->
+                    <div class="ai-insights">
+                        <h3><i class="fas fa-robot"></i> AI Business Insights</h3>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 5px;">Sales Trend Prediction</h4>
+                                <p style="opacity: 0.9;">AI predicts 18% increase in electronics sales this week based on market trends.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 5px;">Inventory Recommendation</h4>
+                                <p style="opacity: 0.9;">Restock "Kitenge Dress Collection" - predicted to sell out in 3 days.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 5px;">Customer Behavior</h4>
+                                <p style="opacity: 0.9;">Customers who buy smartphones are 3x more likely to purchase power banks within 2 weeks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div>
+                    <!-- Quick Stats -->
+                    <div class="section-card">
+                        <div class="section-header">
+                            <h3>Payment Methods</h3>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fab fa-cc-visa" style="color: #1A1F71; font-size: 1.5rem;"></i>
+                                    <span>Visa/Mastercard</span>
+                                </div>
+                                <span style="font-weight: 600;">42%</span>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-mobile-alt" style="color: #00A859; font-size: 1.5rem;"></i>
+                                    <span>M-Pesa</span>
+                                </div>
+                                <span style="font-weight: 600;">38%</span>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-money-bill-wave" style="color: #ED1C24; font-size: 1.5rem;"></i>
+                                    <span>Airtel Money</span>
+                                </div>
+                                <span style="font-weight: 600;">15%</span>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-handshake" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                                    <span>Cash on Delivery</span>
+                                </div>
+                                <span style="font-weight: 600;">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Inventory Alert -->
+                    <div class="inventory-alert">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--danger); font-size: 1.5rem;"></i>
+                        <div>
+                            <h4 style="margin: 0; color: var(--danger);">Low Stock Alert</h4>
+                            <p style="margin: 5px 0 0; font-size: 0.9rem;">8 items need restocking. Check inventory dashboard.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="section-card" style="margin-top: 30px;">
+                        <div class="section-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                <i class="fas fa-file-invoice"></i> Invoice
+                            </a>
+                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                <i class="fas fa-shipping-fast"></i> Ship
+                            </a>
+                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                <i class="fas fa-chart-pie"></i> Reports
+                            </a>
+                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>System Status</h3>
+                    <span style="color: var(--success); font-weight: 600;">All Systems Operational</span>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div>
+                        <h4 style="font-size: 1rem; margin-bottom: 10px;">AI Services</h4>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--success);"></div>
+                            <span>Recommender: Active</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--success);"></div>
+                            <span>Document AI: Active</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="font-size: 1rem; margin-bottom: 10px;">Payment Gateways</h4>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--success);"></div>
+                            <span>M-Pesa: Active</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--success);"></div>
+                            <span>Visa: Active</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="font-size: 1rem; margin-bottom: 10px;">Shipping Integration</h4>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--success);"></div>
+                            <span>Tracker: Active</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--warning);"></div>
+                            <span>Route AI: Beta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Mzuri Stores</h4>
+                    <p>Dar es Salaam's premier AI-powered e-commerce platform with integrated payment solutions and advanced business intelligence.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Dashboard Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sales Analytics</a></li>
+                        <li><a href="#">Inventory Management</a></li>
+                        <li><a href="#">Customer Insights</a></li>
+                        <li><a href="#">AI Recommendations</a></li>
+                        <li><a href="#">Shipping Tracker</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Support</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Samora Avenue, Dar es Salaam</li>
+                        <li><i class="fas fa-phone"></i> +255 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> support@mzuristores.co.tz</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Support Available</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Mzuri Stores. All rights reserved. | Built with React/Next.js, Node.js, PostgreSQL & AWS</p>
+                <p>Business Dashboard v2.1 | Last Updated: Today 14:30 EAT</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Active page highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Dashboard sidebar active link
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Animate stat cards on load
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+            
+            // Simulate live data updates
+            function updateLiveData() {
+                const revenueElement = document.querySelector('.stat-card.revenue .stat-value');
+                const ordersElement = document.querySelector('.stat-card.orders .stat-value');
+                
+                if (revenueElement && ordersElement) {
+                    const currentRevenue = parseFloat(revenueElement.textContent.replace('TSH ', '').replace('M', ''));
+                    const currentOrders = parseInt(ordersElement.textContent);
+                    
+                    // Small random fluctuations
+                    const revenueChange = (Math.random() * 0.05 + 0.01) * currentRevenue;
+                    const ordersChange = Math.floor(Math.random() * 3);
+                    
+                    const newRevenue = currentRevenue + revenueChange;
+                    const newOrders = currentOrders + ordersChange;
+                    
+                    revenueElement.textContent = `TSH ${newRevenue.toFixed(1)}M`;
+                    ordersElement.textContent = newOrders;
+                }
+            }
+            
+            // Update every 30 seconds
+            setInterval(updateLiveData, 30000);
+        });
+    </script>
+</body>
+</html>
