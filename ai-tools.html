@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools | Mzuri Stores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* COMMON STYLES */
+        :root {
+            --primary: #2A5C9A;
+            --secondary: #E67E22;
+            --accent: #27AE60;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --danger: #E74C3C;
+            --warning: #F39C12;
+            --success: #2ECC71;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER STYLES */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4a7e;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d35400;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* FOOTER STYLES */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* AI TOOLS PAGE SPECIFIC STYLES */
+        .page-header {
+            background: linear-gradient(135deg, #1A3D6E, #2A5C9A);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .ai-section {
+            padding: 80px 0;
+        }
+        
+        .ai-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .ai-category {
+            padding: 12px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ai-category.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .ai-category:hover {
+            border-color: var(--primary);
+        }
+        
+        .ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .ai-tool-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .ai-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .tool-header {
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .tool-content {
+            padding: 25px;
+        }
+        
+        .tool-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .tool-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tool-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .tool-features li i {
+            color: var(--accent);
+        }
+        
+        .tool-demo {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .demo-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .demo-input input,
+        .demo-input textarea {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .demo-input textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .demo-result {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            min-height: 80px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .voice-ai-section {
+            background: linear-gradient(135deg, #1A1A2E, #16213E);
+            color: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        
+        .voice-ai-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .voice-ai-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .voice-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .voice-visualizer {
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .voice-bar {
+            width: 8px;
+            height: 40px;
+            background-color: var(--accent);
+            margin: 0 2px;
+            border-radius: 4px;
+            animation: voicePulse 1s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+        
+        @keyframes voicePulse {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.5); }
+        }
+        
+        .video-call-section {
+            margin: 60px 0;
+        }
+        
+        .video-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .main-video {
+            background-color: #1A1A2E;
+            border-radius: 10px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .virtual-background {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .participants-list {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .participant-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .participant-item:last-child {
+            border-bottom: none;
+        }
+        
+        .participant-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .translation-chat {
+            background: linear-gradient(135deg, #1A3D6E, #2A5C9A);
+            color: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        
+        .chat-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chat-window {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+        
+        .message.received {
+            background-color: rgba(255, 255, 255, 0.2);
+            align-self: flex-start;
+        }
+        
+        .message.sent {
+            background-color: var(--accent);
+            align-self: flex-end;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .language-btn.active {
+            background-color: var(--accent);
+        }
+        
+        .language-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .ai-predictor-section {
+            margin: 60px 0;
+        }
+        
+        .predictor-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .predictor-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .predictor-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .predictor-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background-color: rgba(42, 92, 154, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .prediction-result {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .prediction-value {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .meeting-scheduler {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin: 60px 0;
+        }
+        
+        .calendar-view {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .calendar-day {
+            height: 100px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .calendar-day.today {
+            background-color: rgba(42, 92, 154, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .calendar-day.available {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .calendar-day.busy {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+        
+        .day-number {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .meeting-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .time-slot {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .time-slot.selected {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .time-slot.available:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .ai-tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ai-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ai-category {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .calendar-view {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .calendar-day {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-store logo-icon"></i>
+                <h1>Mzuri<span>Stores</span></h1>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="shipping.html">Shipping</a></li>
+                    <li><a href="blockchain.html">Blockchain</a></li>
+                    <li><a href="ai-tools.html" class="active">AI Tools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-buttons">
+                <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> Sign In</a>
+                <a href="dashboard.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>AI-Powered Business Tools</h1>
+            <p>Advanced artificial intelligence tools to enhance your e-commerce experience, from product recommendations to customer service automation</p>
+        </div>
+    </section>
+
+    <!-- AI Tools Section -->
+    <section class="ai-section">
+        <div class="container">
+            <!-- AI Categories -->
+            <div class="ai-categories">
+                <div class="ai-category active" data-category="all">
+                    <i class="fas fa-layer-group"></i> All AI Tools
+                </div>
+                <div class="ai-category" data-category="recommendation">
+                    <i class="fas fa-robot"></i> Recommendation AI
+                </div>
+                <div class="ai-category" data-category="voice">
+                    <i class="fas fa-microphone"></i> Voice AI
+                </div>
+                <div class="ai-category" data-category="translation">
+                    <i class="fas fa-language"></i> Translation
+                </div>
+                <div class="ai-category" data-category="prediction">
+                    <i class="fas fa-chart-line"></i> Prediction AI
+                </div>
+            </div>
+            
+            <!-- AI Tools Grid -->
+            <div class="ai-tools-grid">
+                <!-- Smart Product Recommender -->
+                <div class="ai-tool-card" data-category="recommendation">
+                    <div class="tool-header">
+                        <div>
+                            <h3 style="color: white; margin: 0;">Smart Product Recommender</h3>
+                            <p style="opacity: 0.9; margin: 5px 0 0;">AI-powered product suggestions</p>
+                        </div>
+                        <div class="tool-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-content">
+                        <p>Personalized product recommendations based on customer behavior, purchase history, and browsing patterns.</p>
+                        
+                        <ul class="tool-features">
+                            <li><i class="fas fa-check"></i> Real-time personalization</li>
+                            <li><i class="fas fa-check"></i> Cross-sell and upsell suggestions</li>
+                            <li><i class="fas fa-check"></i> Seasonal trend analysis</li>
+                            <li><i class="fas fa-check"></i> Customer segmentation</li>
+                        </ul>
+                        
+                        <div class="tool-demo">
+                            <h4>Try It Out</h4>
+                            <p>What products are you interested in?</p>
+                            <div class="demo-input">
+                                <input type="text" placeholder="e.g., smartphone, dress, furniture" id="recommendationInput">
+                                <button class="btn btn-primary btn-sm" id="getRecommendations">Get Recommendations</button>
+                            </div>
+                            <div class="demo-result" id="recommendationResult">
+                                <!-- Results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Documentation Wizard -->
+                <div class="ai-tool-card" data-category="prediction">
+                    <div class="tool-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div>
+                            <h3 style="color: white; margin: 0;">AI Documentation Wizard</h3>
+                            <p style="opacity: 0.9; margin: 5px 0 0;">Automated export/import documents</p>
+                        </div>
+                        <div class="tool-icon">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-content">
+                        <p>Automatically fill export/import documents with AI-powered data extraction and validation.</p>
+                        
+                        <ul class="tool-features">
+                            <li><i class="fas fa-check"></i> Automated form filling</li>
+                            <li><i class="fas fa-check"></i> Data validation</li>
+                            <li><i class="fas fa-check"></i> Compliance checking</li>
+                            <li><i class="fas fa-check"></i> Multi-language support</li>
+                        </ul>
+                        
+                        <div class="tool-demo">
+                            <h4>Document Demo</h4>
+                            <div class="demo-input">
+                                <textarea placeholder="Paste product details or invoice information..." id="documentInput"></textarea>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;" id="processDocument">
+                                <i class="fas fa-magic"></i> Auto-fill Document
+                            </button>
+                            <div class="demo-result" id="documentResult">
+                                <!-- Document preview will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bulk Order Simulator -->
+                <div class="ai-tool-card" data-category="prediction">
+                    <div class="tool-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div>
+                            <h3 style="color: white; margin: 0;">Bulk Order Simulator</h3>
+                            <p style="opacity: 0.9; margin: 5px 0 0;">Predictive pricing AI</p>
+                        </div>
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-content">
+                        <p>Predictive pricing AI for bulk orders with cost optimization and delivery time estimation.</p>
+                        
+                        <ul class="tool-features">
+                            <li><i class="fas fa-check"></i> Dynamic pricing models</li>
+                            <li><i class="fas fa-check"></i> Cost optimization</li>
+                            <li><i class="fas fa-check"></i> Delivery time prediction</li>
+                            <li><i class="fas fa-check"></i> Supplier comparison</li>
+                        </ul>
+                        
+                        <div class="tool-demo">
+                            <h4>Simulate Order</h4>
+                            <div class="demo-input">
+                                <input type="number" placeholder="Quantity" id="bulkQuantity" value="100" min="10">
+                                <select id="productType">
+                                    <option>Electronics</option>
+                                    <option selected>Clothing</option>
+                                    <option>Home Goods</option>
+                                    <option>Groceries</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;" id="simulateOrder">
+                                <i class="fas fa-calculator"></i> Calculate Best Price
+                            </button>
+                            <div class="demo-result" id="bulkResult">
+                                <!-- Results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Voice AI Section -->
+            <div class="voice-ai-section">
+                <h2 style="color: white; text-align: center;"><i class="fas fa-microphone"></i> Voice AI Assistant</h2>
+                <p style="text-align: center; opacity: 0.9; max-width: 800px; margin: 0 auto 40px;">Voice-controlled interface for hands-free shopping and business management</p>
+                
+                <div class="voice-ai-container">
+                    <div class="voice-controls">
+                        <h3 style="color: white;">Try Voice Commands</h3>
+                        <p>Click the microphone and try these commands:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                            <div style="padding: 15px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; text-align: center;">
+                                <i class="fas fa-shopping-cart" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                                <p>"Add smartphone to cart"</p>
+                            </div>
+                            <div style="padding: 15px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; text-align: center;">
+                                <i class="fas fa-search" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                                <p>"Show me dresses under 100,000 TSH"</p>
+                            </div>
+                            <div style="padding: 15px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; text-align: center;">
+                                <i class="fas fa-truck" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                                <p>"Track my order MZ-7842"</p>
+                            </div>
+                            <div style="padding: 15px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; text-align: center;">
+                                <i class="fas fa-file" style="font-size: 1.5rem; margin-bottom: 10px;"></i>
+                                <p>"Create an invoice"</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <button class="btn btn-secondary" id="voiceControlBtn" style="padding: 15px 30px; font-size: 1.1rem;">
+                                <i class="fas fa-microphone"></i> Start Voice Assistant
+                            </button>
+                            <p style="margin-top: 15px; opacity: 0.8;" id="voiceStatus">Click to activate voice control</p>
+                        </div>
+                    </div>
+                    
+                    <div class="voice-visualizer" id="voiceVisualizer">
+                        <!-- Voice bars will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Call Integration -->
+            <div class="video-call-section">
+                <h2><i class="fas fa-video"></i> Video Call Integration</h2>
+                <p>Virtual meetings with AI-powered features and customizable backgrounds</p>
+                
+                <div class="video-container">
+                    <div class="main-video">
+                        <i class="fas fa-user-circle" style="font-size: 8rem; opacity: 0.5;"></i>
+                        <div class="virtual-background">
+                            <i class="fas fa-image"></i> Virtual Farm Background
+                        </div>
+                        <div style="position: absolute; bottom: 20px; left: 20px; display: flex; gap: 10px;">
+                            <div style="background-color: rgba(0, 0, 0, 0.7); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">
+                                <i class="fas fa-microphone"></i> Mic: On
+                            </div>
+                            <div style="background-color: rgba(0, 0, 0, 0.7); color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;">
+                                <i class="fas fa-video"></i> Camera: On
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="participants-list">
+                        <h3>Meeting Participants</h3>
+                        <div class="participant-item">
+                            <div class="participant-avatar">JB</div>
+                            <div>
+                                <h4 style="margin: 0;">John Business</h4>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin: 5px 0 0;">Host • Mzuri Stores</p>
+                            </div>
+                        </div>
+                        
+                        <div class="participant-item">
+                            <div class="participant-avatar" style="background-color: var(--accent);">SC</div>
+                            <div>
+                                <h4 style="margin: 0;">Sarah Customer</h4>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin: 5px 0 0;">Customer • Dar es Salaam</p>
+                            </div>
+                        </div>
+                        
+                        <div class="participant-item">
+                            <div class="participant-avatar" style="background-color: var(--secondary);">AI</div>
+                            <div>
+                                <h4 style="margin: 0;">AI Assistant</h4>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin: 5px 0 0;">Real-time Translation • Notes</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <button class="btn btn-primary" style="width: 100%;">
+                                <i class="fas fa-plus"></i> Invite Participants
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-controls">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-video-slash"></i> Toggle Camera
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-microphone-slash"></i> Mute
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-image"></i> Change Background
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-record-vinyl"></i> Start Recording
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-phone-slash"></i> End Call
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Real-time Translation Chat -->
+            <div class="translation-chat">
+                <h2 style="color: white;"><i class="fas fa-language"></i> Real-time Translation Chat</h2>
+                <p style="opacity: 0.9;">Communicate with customers in any language with live translation</p>
+                
+                <div class="chat-container">
+                    <div class="chat-window">
+                        <h4 style="color: white; margin-bottom: 20px;">Chat with Customer Support</h4>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message received">
+                                <p>Hello! I need help with my order #MZ-7842</p>
+                                <small style="opacity: 0.7;">Customer • Just now</small>
+                            </div>
+                            
+                            <div class="message sent">
+                                <p>Hello! I'll help you with order #MZ-7842. What do you need assistance with?</p>
+                                <small style="opacity: 0.7;">Support • Just now</small>
+                            </div>
+                            
+                            <div class="message received">
+                                <p>I want to change the delivery address. Is it possible?</p>
+                                <small style="opacity: 0.7;">Customer • Just now</small>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type your message..." id="chatInput">
+                            <button class="btn btn-accent" id="sendMessage">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: white; margin-bottom: 20px;">Translation Settings</h4>
+                        
+                        <div style="margin-bottom: 30px;">
+                            <p>Auto-translate messages to:</p>
+                            <div class="language-selector">
+                                <button class="language-btn active" data-lang="en">English</button>
+                                <button class="language-btn" data-lang="sw">Swahili</button>
+                                <button class="language-btn" data-lang="fr">French</button>
+                                <button class="language-btn" data-lang="ar">Arabic</button>
+                                <button class="language-btn" data-lang="zh">Chinese</button>
+                            </div>
+                        </div>
+                        
+                        <div style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px;">
+                            <h5 style="color: white; margin-bottom: 15px;">AI Translation Features</h5>
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <i class="fas fa-bolt" style="color: var(--accent);"></i>
+                                <span>Real-time translation</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <i class="fas fa-robot" style="color: var(--accent);"></i>
+                                <span>Context-aware translations</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-history" style="color: var(--accent);"></i>
+                                <span>Translation memory</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 30px;">
+                            <i class="fas fa-headset"></i> Connect to Live Agent
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Predictor Section -->
+            <div class="ai-predictor-section">
+                <h2><i class="fas fa-crystal-ball"></i> AI Prediction Tools</h2>
+                <p>Advanced AI tools for business forecasting and customer insights</p>
+                
+                <div class="predictor-container">
+                    <!-- Lead Qualifier -->
+                    <div class="predictor-card">
+                        <div class="predictor-header">
+                            <div class="predictor-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0;">AI Lead Qualifier</h3>
+                                <p style="color: var(--gray);">Predicts customer value</p>
+                            </div>
+                        </div>
+                        
+                        <p>Analyzes customer data to predict lifetime value and qualification score for targeted marketing.</p>
+                        
+                        <div class="prediction-result">
+                            <div style="text-align: center;">
+                                <div class="info-label">Lead Score</div>
+                                <div class="prediction-value" style="color: var(--primary);">87/100</div>
+                                <div class="info-label">High-value customer predicted</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-outline" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-chart-bar"></i> View Lead Analytics
+                        </button>
+                    </div>
+                    
+                    <!-- Customer Journey Predictor -->
+                    <div class="predictor-card">
+                        <div class="predictor-header">
+                            <div class="predictor-icon">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin: 0;">Customer Journey Predictor</h3>
+                                <p style="color: var(--gray);">AI forecasts needs</p>
+                            </div>
+                        </div>
+                        
+                        <p>Predicts customer needs and next likely purchases based on journey analysis and behavior patterns.</p>
+                        
+                        <div class="prediction-result">
+                            <div style="text-align: center;">
+                                <div class="info-label">Next Purchase Probability</div>
+                                <div class="prediction-value" style="color: var(--accent);">72%</div>
+                                <div class="info-label">Likely within 14 days</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-outline" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-route"></i> View Journey Map
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Meeting Scheduler AI -->
+            <div class="meeting-scheduler">
+                <h2><i class="fas fa-calendar-alt"></i> Meeting Scheduler AI</h2>
+                <p>AI-powered scheduling that finds optimal meeting times for all participants</p>
+                
+                <div class="calendar-view" id="calendarView">
+                    <!-- Calendar will be generated by JavaScript -->
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h4>Available Time Slots (June 2024)</h4>
+                    <div class="time-slots" id="timeSlots">
+                        <!-- Time slots will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 20px; margin-top: 40px;">
+                    <div style="flex: 1;">
+                        <h4>Schedule a Meeting</h4>
+                        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                            <input type="text" placeholder="Meeting Title" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                            <input type="email" placeholder="Participant Email" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                            <select style="padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                <option>Meeting Type: Sales Consultation</option>
+                                <option>Customer Support</option>
+                                <option>Product Demo</option>
+                                <option>Business Partnership</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h4>AI Scheduling Suggestions</h4>
+                        <div style="background-color: #f9f9f9; border-radius: 10px; padding: 20px; margin-top: 20px;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                <i class="fas fa-lightbulb" style="color: var(--warning);"></i>
+                                <span><strong>AI Recommendation:</strong> Schedule for June 20, 10:00 AM</span>
+                            </div>
+                            <p style="font-size: 0.9rem; color: var(--gray);">Based on participant availability and historical meeting success rates.</p>
+                        </div>
+                        
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                            <i class="fas fa-calendar-check"></i> Schedule with AI
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Mzuri Stores</h4>
+                    <p>Dar es Salaam's premier AI-powered e-commerce platform with integrated payment solutions and advanced business intelligence.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>AI Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Product Recommender</a></li>
+                        <li><a href="#">Voice AI Assistant</a></li>
+                        <li><a href="#">Translation Chat</a></li>
+                        <li><a href="#">Documentation Wizard</a></li>
+                        <li><a href="#">Meeting Scheduler</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>AI Technologies</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Machine Learning</a></li>
+                        <li><a href="#">Natural Language Processing</a></li>
+                        <li><a href="#">Computer Vision</a></li>
+                        <li><a href="#">Predictive Analytics</a></li>
+                        <li><a href="#">Voice Recognition</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>AI Support</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-robot"></i> AI Assistant 24/7</li>
+                        <li><i class="fas fa-envelope"></i> ai@mzuristores.co.tz</li>
+                        <li><i class="fas fa-book"></i> AI Tools Documentation</li>
+                        <li><i class="fas fa-graduation-cap"></i> AI Training Center</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Mzuri Stores. All rights reserved. | Built with React/Next.js, Node.js, PostgreSQL & AWS</p>
+                <p>AI Models Active • Real-time Processing • Machine Learning Enabled</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Active page highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // AI Categories filtering
+            const aiCategories = document.querySelectorAll('.ai-category');
+            const aiToolCards = document.querySelectorAll('.ai-tool-card');
+            
+            aiCategories.forEach(category => {
+                category.addEventListener('click', function() {
+                    // Update active category
+                    aiCategories.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    // Filter tools
+                    aiToolCards.forEach(card => {
+                        if (selectedCategory === 'all' || card.getAttribute('data-category') === selectedCategory) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Smart Product Recommender Demo
+            const recommendationInput = document.getElementById('recommendationInput');
+            const getRecommendationsBtn = document.getElementById('getRecommendations');
+            const recommendationResult = document.getElementById('recommendationResult');
+            
+            getRecommendationsBtn.addEventListener('click', function() {
+                const query = recommendationInput.value.trim();
+                
+                if (!query) {
+                    recommendationResult.innerHTML = '<p style="color: var(--danger);">Please enter a product category or item</p>';
+                    return;
+                }
+                
+                // Show loading
+                recommendationResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Analyzing your interests...</p>';
+                
+                // Simulate AI processing
+                setTimeout(() => {
+                    const recommendations = [
+                        { name: 'Tecno Spark 10 Pro', price: 'TSH 450,000', reason: 'Based on your interest in smartphones' },
+                        { name: 'Solar Power Bank', price: 'TSH 120,000', reason: 'Popular accessory for mobile users' },
+                        { name: 'Bluetooth Headphones', price: 'TSH 85,000', reason: 'Frequently bought with smartphones' }
+                    ];
+                    
+                    let resultHTML = '<h5 style="margin-bottom: 15px;">Recommended for you:</h5>';
+                    recommendations.forEach(rec => {
+                        resultHTML += `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                <div>
+                                    <strong>${rec.name}</strong><br>
+                                    <small>${rec.reason}</small>
+                                </div>
+                                <div>
+                                    <span style="font-weight: 600;">${rec.price}</span><br>
+                                    <button class="btn btn-primary btn-sm" style="margin-top: 5px; padding: 3px 10px; font-size: 0.8rem;">View</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    recommendationResult.innerHTML = resultHTML;
+                }, 1500);
+            });
+            
+            // AI Documentation Wizard Demo
+            const documentInput = document.getElementById('documentInput');
+            const processDocumentBtn = document.getElementById('processDocument');
+            const documentResult = document.getElementById('documentResult');
+            
+            processDocumentBtn.addEventListener('click', function() {
+                const text = documentInput.value.trim();
+                
+                if (!text) {
+                    documentResult.innerHTML = '<p style="color: var(--danger);">Please enter product details or invoice information</p>';
+                    return;
+                }
+                
+                // Show loading
+                documentResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Extracting data and filling form...</p>';
+                
+                // Simulate AI processing
+                setTimeout(() => {
+                    documentResult.innerHTML = `
+                        <h5 style="margin-bottom: 15px;">Generated Export Document</h5>
+                        <div style="font-size: 0.9rem;">
+                            <div style="display: flex; margin-bottom: 10px;">
+                                <div style="width: 150px; font-weight: 600;">Product:</div>
+                                <div>Tecno Spark 10 Pro (Extracted from text)</div>
+                            </div>
+                            <div style="display: flex; margin-bottom: 10px;">
+                                <div style="width: 150px; font-weight: 600;">Quantity:</div>
+                                <div>50 units (Auto-calculated)</div>
+                            </div>
+                            <div style="display: flex; margin-bottom: 10px;">
+                                <div style="width: 150px; font-weight: 600;">Value:</div>
+                                <div>TSH 22,500,000 (Auto-calculated)</div>
+                            </div>
+                            <div style="display: flex; margin-bottom: 10px;">
+                                <div style="width: 150px; font-weight: 600;">HS Code:</div>
+                                <div>8517.12.00 (AI suggested)</div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="width: 150px; font-weight: 600;">Status:</div>
+                                <div><span style="color: var(--success);">✓ Document ready for submission</span></div>
+                            </div>
+                        </div>
+                    `;
+                }, 2000);
+            });
+            
+            // Bulk Order Simulator
+            const bulkQuantity = document.getElementById('bulkQuantity');
+            const productType = document.getElementById('productType');
+            const simulateOrderBtn = document.getElementById('simulateOrder');
+            const bulkResult = document.getElementById('bulkResult');
+            
+            simulateOrderBtn.addEventListener('click', function() {
+                const quantity = parseInt(bulkQuantity.value) || 100;
+                const type = productType.value;
+                
+                // Show loading
+                bulkResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Calculating optimal pricing...</p>';
+                
+                // Simulate AI calculation
+                setTimeout(() => {
+                    let basePrice, discount, total;
+                    
+                    switch(type) {
+                        case 'Electronics':
+                            basePrice = 450000;
+                            discount = quantity > 200 ? 15 : quantity > 100 ? 12 : quantity > 50 ? 8 : 5;
+                            break;
+                        case 'Clothing':
+                            basePrice = 85000;
+                            discount = quantity > 300 ? 20 : quantity > 150 ? 15 : quantity > 75 ? 10 : 5;
+                            break;
+                        case 'Home Goods':
+                            basePrice = 350000;
+                            discount = quantity > 100 ? 12 : quantity > 50 ? 8 : quantity > 25 ? 5 : 3;
+                            break;
+                        case 'Groceries':
+                            basePrice = 15000;
+                            discount = quantity > 500 ? 10 : quantity > 250 ? 7 : quantity > 100 ? 5 : 2;
+                            break;
+                        default:
+                            basePrice = 100000;
+                            discount = 5;
+                    }
+                    
+                    total = (basePrice * quantity) * (1 - discount/100);
+                    
+                    bulkResult.innerHTML = `
+                        <h5 style="margin-bottom: 15px;">Bulk Order Simulation Result</h5>
+                        <div style="font-size: 0.9rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div>Quantity:</div>
+                                <div><strong>${quantity} units</strong></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div>Product Type:</div>
+                                <div><strong>${type}</strong></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div>Unit Price:</div>
+                                <div><strong>TSH ${basePrice.toLocaleString()}</strong></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <div>AI Discount:</div>
+                                <div><strong style="color: var(--success);">${discount}%</strong></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 2px solid #eee;">
+                                <div>Total Price:</div>
+                                <div><strong style="font-size: 1.2rem;">TSH ${Math.round(total).toLocaleString()}</strong></div>
+                            </div>
+                            <div style="margin-top: 15px; padding: 10px; background-color: #e8f5e9; border-radius: 5px; font-size: 0.8rem;">
+                                <i class="fas fa-lightbulb" style="color: var(--warning);"></i> 
+                                <strong>AI Tip:</strong> Order within 7 days for free shipping
+                            </div>
+                        </div>
+                    `;
+                }, 1500);
+            });
+            
+            // Voice AI Assistant
+            const voiceControlBtn = document.getElementById('voiceControlBtn');
+            const voiceStatus = document.getElementById('voiceStatus');
+            const voiceVisualizer = document.getElementById('voiceVisualizer');
+            
+            // Create voice visualization bars
+            for (let i = 0; i < 20; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'voice-bar';
+                bar.style.setProperty('--i', i);
+                voiceVisualizer.appendChild(bar);
+            }
+            
+            let isListening = false;
+            voiceControlBtn.addEventListener('click', function() {
+                isListening = !isListening;
+                
+                if (isListening) {
+                    this.innerHTML = '<i class="fas fa-stop"></i> Stop Listening';
+                    this.style.backgroundColor = 'var(--danger)';
+                    voiceStatus.textContent = 'Listening... Try saying: "Add smartphone to cart"';
+                    
+                    // Animate voice bars
+                    const bars = voiceVisualizer.querySelectorAll('.voice-bar');
+                    bars.forEach(bar => {
+                        bar.style.animationPlayState = 'running';
+                    });
+                    
+                    // Simulate voice command after 3 seconds
+                    setTimeout(() => {
+                        if (isListening) {
+                            voiceStatus.innerHTML = '<i class="fas fa-check" style="color: var(--success);"></i> Command recognized: "Add smartphone to cart"';
+                            
+                            // Simulate adding to cart
+                            setTimeout(() => {
+                                voiceStatus.innerHTML = '<i class="fas fa-shopping-cart" style="color: var(--accent);"></i> Added Tecno Spark 10 Pro to your cart';
+                            }, 1000);
+                        }
+                    }, 3000);
+                } else {
+                    this.innerHTML = '<i class="fas fa-microphone"></i> Start Voice Assistant';
+                    this.style.backgroundColor = '';
+                    voiceStatus.textContent = 'Click to activate voice control';
+                    
+                    // Stop voice bars animation
+                    const bars = voiceVisualizer.querySelectorAll('.voice-bar');
+                    bars.forEach(bar => {
+                        bar.style.animationPlayState = 'paused';
+                    });
+                }
+            });
+            
+            // Translation Chat
+            const chatInput = document.getElementById('chatInput');
+            const sendMessageBtn = document.getElementById('sendMessage');
+            const chatMessages = document.getElementById('chatMessages');
+            const languageButtons = document.querySelectorAll('.language-btn');
+            
+            sendMessageBtn.addEventListener('click', function() {
+                const message = chatInput.value.trim();
+                
+                if (!message) return;
+                
+                // Add sent message
+                const sentMessage = document.createElement('div');
+                sentMessage.className = 'message sent';
+                sentMessage.innerHTML = `
+                    <p>${message}</p>
+                    <small style="opacity: 0.7;">You • Just now</small>
+                `;
+                chatMessages.appendChild(sentMessage);
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Simulate AI response after delay
+                setTimeout(() => {
+                    const responses = [
+                        "I can help you with that. Could you please provide your order number?",
+                        "Thank you for your message. Our team will get back to you shortly.",
+                        "I understand your concern. Let me check that for you.",
+                        "Would you like me to connect you with a live agent?"
+                    ];
+                    
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    
+                    const receivedMessage = document.createElement('div');
+                    receivedMessage.className = 'message received';
+                    receivedMessage.innerHTML = `
+                        <p>${randomResponse}</p>
+                        <small style="opacity: 0.7;">AI Assistant • Just now</small>
+                    `;
+                    chatMessages.appendChild(receivedMessage);
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            });
+            
+            // Language selection
+            languageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    languageButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const lang = this.getAttribute('data-lang');
+                    voiceStatus.textContent = `Language set to: ${this.textContent}`;
+                });
+            });
+            
+            // Calendar generation
+            const calendarView = document.getElementById('calendarView');
+            const timeSlots = document.getElementById('timeSlots');
+            
+            // Generate calendar days
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            
+            // Sample calendar data
+            const daysInMonth = 30;
+            const todayDate = today.getDate();
+            
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                
+                if (i === todayDate) {
+                    dayElement.classList.add('today');
+                }
+                
+                // Mark some days as available/busy
+                if (i === 20 || i === 21 || i === 25) {
+                    dayElement.classList.add('available');
+                } else if (i === 15 || i === 22 || i === 28) {
+                    dayElement.classList.add('busy');
+                }
+                
+                dayElement.innerHTML = `
+                    <div class="day-number">${i}</div>
+                    <div>June ${currentYear}</div>
+                    ${(i === 20 || i === 25) ? '<div class="meeting-dot"></div>' : ''}
+                `;
+                
+                calendarView.appendChild(dayElement);
+            }
+            
+            // Generate time slots
+            const timeSlotsData = [
+                { time: '9:00 AM', available: true },
+                { time: '10:00 AM', available: true },
+                { time: '11:00 AM', available: false },
+                { time: '1:00 PM', available: true },
+                { time: '2:00 PM', available: true },
+                { time: '3:00 PM', available: true },
+                { time: '4:00 PM', available: false },
+                { time: '5:00 PM', available: true }
+            ];
+            
+            timeSlotsData.forEach(slot => {
+                const slotElement = document.createElement('div');
+                slotElement.className = 'time-slot';
+                if (!slot.available) {
+                    slotElement.classList.add('busy');
+                    slotElement.style.opacity = '0.5';
+                    slotElement.style.cursor = 'not-allowed';
+                }
+                slotElement.textContent = slot.time;
+                
+                if (slot.available) {
+                    slotElement.addEventListener('click', function() {
+                        document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                        this.classList.add('selected');
+                        voiceStatus.textContent = `Selected time: ${slot.time} on June 20`;
+                    });
+                }
+                
+                timeSlots.appendChild(slotElement);
+            });
+        });
+    </script>
+</body>
+</html>
