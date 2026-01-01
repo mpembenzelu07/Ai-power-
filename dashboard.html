@@ -642,7 +642,7 @@
             
             <div class="nav-buttons">
                 <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> John Business</a>
-                <a href="#" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" class="btn btn-primary" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
     </header>
@@ -658,14 +658,14 @@
             
             <ul class="sidebar-menu">
                 <li><a href="dashboard.html" class="active"><i class="fas fa-chart-bar"></i> Overview</a></li>
-                <li><a href="#"><i class="fas fa-box"></i> Products</a></li>
-                <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
-                <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="#"><i class="fas fa-robot"></i> AI Insights</a></li>
-                <li><a href="#"><i class="fas fa-shipping-fast"></i> Shipping</a></li>
-                <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Invoices</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#" id="productsLink"><i class="fas fa-box"></i> Products</a></li>
+                <li><a href="#" id="ordersLink"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="#" id="customersLink"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="#" id="analyticsLink"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#" id="aiInsightsLink"><i class="fas fa-robot"></i> AI Insights</a></li>
+                <li><a href="shipping.html"><i class="fas fa-shipping-fast"></i> Shipping</a></li>
+                <li><a href="#" id="invoicesLink"><i class="fas fa-file-invoice-dollar"></i> Invoices</a></li>
+                <li><a href="#" id="settingsLink"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
             
             <div style="padding: 25px; margin-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -673,7 +673,7 @@
                 <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 10px;">
                     <i class="fas fa-plus"></i> Add Product
                 </a>
-                <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center; color: white; border-color: white;">
+                <a href="#" class="btn btn-outline" id="exportDataBtn" style="width: 100%; justify-content: center; color: white; border-color: white;">
                     <i class="fas fa-download"></i> Export Data
                 </a>
             </div>
@@ -771,10 +771,10 @@
                     <div class="section-card">
                         <div class="section-header">
                             <h3>Recent Orders</h3>
-                            <a href="#" class="btn btn-outline btn-sm">View All</a>
+                            <a href="#" class="btn btn-outline btn-sm" id="viewAllOrders">View All</a>
                         </div>
                         
-                        <div class="recent-orders">
+                        <div class="recent-orders" id="recentOrdersContainer">
                             <div class="order-row">
                                 <div>
                                     <div class="order-id">#ORD-7842</div>
@@ -822,7 +822,7 @@
                     </div>
                     
                     <!-- AI Insights -->
-                    <div class="ai-insights">
+                    <div class="ai-insights" id="aiInsightsSection">
                         <h3><i class="fas fa-robot"></i> AI Business Insights</h3>
                         
                         <div class="insight-item">
@@ -865,7 +865,7 @@
                             <h3>Payment Methods</h3>
                         </div>
                         
-                        <div style="margin-top: 20px;">
+                        <div style="margin-top: 20px;" id="paymentMethods">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                                 <div style="display: flex; align-items: center; gap: 10px;">
                                     <i class="fab fa-cc-visa" style="color: #1A1F71; font-size: 1.5rem;"></i>
@@ -901,7 +901,7 @@
                     </div>
                     
                     <!-- Inventory Alert -->
-                    <div class="inventory-alert">
+                    <div class="inventory-alert" id="inventoryAlert">
                         <i class="fas fa-exclamation-triangle" style="color: var(--danger); font-size: 1.5rem;"></i>
                         <div>
                             <h4 style="margin: 0; color: var(--danger);">Low Stock Alert</h4>
@@ -916,16 +916,16 @@
                         </div>
                         
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                            <a href="#" class="btn btn-outline" id="invoiceBtn" style="justify-content: center;">
                                 <i class="fas fa-file-invoice"></i> Invoice
                             </a>
-                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                            <a href="#" class="btn btn-outline" id="shipBtn" style="justify-content: center;">
                                 <i class="fas fa-shipping-fast"></i> Ship
                             </a>
-                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                            <a href="#" class="btn btn-outline" id="reportsBtn" style="justify-content: center;">
                                 <i class="fas fa-chart-pie"></i> Reports
                             </a>
-                            <a href="#" class="btn btn-outline" style="justify-content: center;">
+                            <a href="#" class="btn btn-outline" id="settingsBtn" style="justify-content: center;">
                                 <i class="fas fa-cog"></i> Settings
                             </a>
                         </div>
@@ -1010,11 +1010,11 @@
                 <div class="footer-column">
                     <h4>Dashboard Tools</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Sales Analytics</a></li>
-                        <li><a href="#">Inventory Management</a></li>
-                        <li><a href="#">Customer Insights</a></li>
-                        <li><a href="#">AI Recommendations</a></li>
-                        <li><a href="#">Shipping Tracker</a></li>
+                        <li><a href="#" id="salesAnalyticsLink">Sales Analytics</a></li>
+                        <li><a href="#" id="inventoryManagementLink">Inventory Management</a></li>
+                        <li><a href="#" id="customerInsightsLink">Customer Insights</a></li>
+                        <li><a href="#" id="aiRecommendationsLink">AI Recommendations</a></li>
+                        <li><a href="shipping.html">Shipping Tracker</a></li>
                     </ul>
                 </div>
                 
@@ -1037,71 +1037,219 @@
     </footer>
 
     <script>
-        // Active page highlighting
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('nav a');
-            
-            navLinks.forEach(link => {
-                const linkPage = link.getAttribute('href');
-                if (linkPage === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            
-            // Dashboard sidebar active link
+            // Fix logout button
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('Are you sure you want to logout?')) {
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+
+            // Fix sidebar links
             const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
             sidebarLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    if (this.getAttribute('href') === '#') {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href === '' || !href.includes('.html')) {
                         e.preventDefault();
+                        
+                        // Remove active class from all links
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        
+                        // Add active class to clicked link
+                        this.classList.add('active');
+                        
+                        // Show message for non-functional pages
+                        const linkText = this.textContent.trim();
+                        alert(`The "${linkText}" feature is coming soon!`);
                     }
-                    
-                    sidebarLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
                 });
             });
-            
+
+            // Fix "View All" button for orders
+            const viewAllOrders = document.getElementById('viewAllOrders');
+            if (viewAllOrders) {
+                viewAllOrders.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Full orders page is under development. This feature will show all orders with advanced filtering.');
+                });
+            }
+
+            // Fix export data button
+            const exportDataBtn = document.getElementById('exportDataBtn');
+            if (exportDataBtn) {
+                exportDataBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Exporting data... CSV file will be downloaded.');
+                    // Simulate download
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.download = 'mzuri-stores-data.csv';
+                    link.click();
+                });
+            }
+
+            // Fix quick action buttons
+            const quickActionButtons = [
+                { id: 'invoiceBtn', message: 'Generate invoice feature coming soon!' },
+                { id: 'shipBtn', message: 'Shipping management feature coming soon!' },
+                { id: 'reportsBtn', message: 'Advanced reports feature coming soon!' },
+                { id: 'settingsBtn', message: 'Settings page coming soon!' }
+            ];
+
+            quickActionButtons.forEach(button => {
+                const btn = document.getElementById(button.id);
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(button.message);
+                    });
+                }
+            });
+
+            // Fix footer dashboard tool links
+            const footerDashboardLinks = [
+                { id: 'salesAnalyticsLink', message: 'Sales analytics dashboard coming soon!' },
+                { id: 'inventoryManagementLink', message: 'Inventory management system coming soon!' },
+                { id: 'customerInsightsLink', message: 'Customer insights dashboard coming soon!' },
+                { id: 'aiRecommendationsLink', message: 'AI recommendations panel coming soon!' }
+            ];
+
+            footerDashboardLinks.forEach(link => {
+                const btn = document.getElementById(link.id);
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(link.message);
+                    });
+                }
+            });
+
+            // Fix main sidebar links with IDs
+            const mainSidebarLinks = [
+                { id: 'productsLink', message: 'Products management coming soon!' },
+                { id: 'ordersLink', message: 'Orders management coming soon!' },
+                { id: 'customersLink', message: 'Customers management coming soon!' },
+                { id: 'analyticsLink', message: 'Analytics dashboard coming soon!' },
+                { id: 'aiInsightsLink', message: 'AI insights panel coming soon!' },
+                { id: 'invoicesLink', message: 'Invoices management coming soon!' },
+                { id: 'settingsLink', message: 'Settings panel coming soon!' }
+            ];
+
+            mainSidebarLinks.forEach(link => {
+                const btn = document.getElementById(link.id);
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(link.message);
+                    });
+                }
+            });
+
             // Animate stat cards on load
             const statCards = document.querySelectorAll('.stat-card');
             statCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
                 setTimeout(() => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
                     card.style.transition = 'all 0.5s ease';
-                    
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 100);
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
                 }, index * 100);
             });
-            
+
             // Simulate live data updates
             function updateLiveData() {
                 const revenueElement = document.querySelector('.stat-card.revenue .stat-value');
                 const ordersElement = document.querySelector('.stat-card.orders .stat-value');
+                const customersElement = document.querySelector('.stat-card.customers .stat-value');
                 
-                if (revenueElement && ordersElement) {
+                if (revenueElement && ordersElement && customersElement) {
                     const currentRevenue = parseFloat(revenueElement.textContent.replace('TSH ', '').replace('M', ''));
                     const currentOrders = parseInt(ordersElement.textContent);
+                    const currentCustomers = parseInt(customersElement.textContent);
                     
                     // Small random fluctuations
-                    const revenueChange = (Math.random() * 0.05 + 0.01) * currentRevenue;
+                    const revenueChange = (Math.random() * 0.05 + 0.01);
                     const ordersChange = Math.floor(Math.random() * 3);
+                    const customersChange = Math.floor(Math.random() * 2);
                     
                     const newRevenue = currentRevenue + revenueChange;
                     const newOrders = currentOrders + ordersChange;
+                    const newCustomers = currentCustomers + customersChange;
                     
                     revenueElement.textContent = `TSH ${newRevenue.toFixed(1)}M`;
                     ordersElement.textContent = newOrders;
+                    customersElement.textContent = newCustomers;
+                    
+                    // Update change indicators
+                    const revenueChangeElement = document.querySelector('.stat-card.revenue .stat-change span');
+                    if (revenueChangeElement) {
+                        revenueChangeElement.textContent = `+${(revenueChange/currentRevenue*100).toFixed(1)}% from yesterday`;
+                    }
                 }
             }
-            
+
             // Update every 30 seconds
             setInterval(updateLiveData, 30000);
+
+            // Initialize with animation
+            setTimeout(() => {
+                updateLiveData();
+            }, 1000);
+
+            // Fix inventory alert click
+            const inventoryAlert = document.getElementById('inventoryAlert');
+            if (inventoryAlert) {
+                inventoryAlert.addEventListener('click', function() {
+                    alert('Showing low stock items: Tecno Spark 10 Pro, Kitenge Dresses, Solar Power Banks, Mahogany Tables');
+                });
+            }
+
+            // Fix AI insights click
+            const aiInsightsSection = document.getElementById('aiInsightsSection');
+            if (aiInsightsSection) {
+                aiInsightsSection.addEventListener('click', function() {
+                    alert('AI Insights: More detailed predictions available in the AI Tools section.');
+                });
+            }
+
+            // Fix payment methods hover effect
+            const paymentMethods = document.getElementById('paymentMethods');
+            if (paymentMethods) {
+                const paymentRows = paymentMethods.querySelectorAll('div[style*="display: flex; justify-content: space-between"]');
+                paymentRows.forEach(row => {
+                    row.style.cursor = 'pointer';
+                    row.style.transition = 'all 0.3s ease';
+                    row.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = '#f5f5f5';
+                        this.style.padding = '5px 10px';
+                        this.style.borderRadius = '5px';
+                    });
+                    row.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = '';
+                        this.style.padding = '';
+                    });
+                });
+            }
+
+            // Fix recent orders click
+            const recentOrdersContainer = document.getElementById('recentOrdersContainer');
+            if (recentOrdersContainer) {
+                const orderRows = recentOrdersContainer.querySelectorAll('.order-row');
+                orderRows.forEach(row => {
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', function() {
+                        const orderId = this.querySelector('.order-id').textContent;
+                        alert(`Order ${orderId} details:\nStatus: ${this.querySelector('.order-status').textContent}\nClick "View All Orders" for complete order management.`);
+                    });
+                });
+            }
         });
     </script>
 </body>
