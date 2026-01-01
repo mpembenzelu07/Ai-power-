@@ -160,28 +160,6 @@
             color: white;
         }
         
-        .cart-icon {
-            position: relative;
-            font-size: 1.5rem;
-            color: var(--dark);
-            text-decoration: none;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--danger);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        
         /* FOOTER STYLES */
         footer {
             background-color: var(--dark);
@@ -255,7 +233,7 @@
         
         /* FEATURES PAGE SPECIFIC STYLES */
         .page-header {
-            background: linear-gradient(rgba(42, 92, 154, 0.9), rgba(42, 92, 154, 0.8));
+            background: linear-gradient(135deg, #1A3D6E, #2A5C9A);
             color: white;
             padding: 60px 0;
             text-align: center;
@@ -272,7 +250,7 @@
             opacity: 0.9;
         }
         
-        .features-categories {
+        .features-section {
             padding: 80px 0;
         }
         
@@ -320,6 +298,10 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             border-top: 5px solid var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
         
         .feature-card:hover {
@@ -399,6 +381,76 @@
             text-align: center;
         }
         
+        .demo-section {
+            background: linear-gradient(135deg, #1A1A2E, #16213E);
+            color: white;
+            border-radius: 10px;
+            padding: 50px;
+            margin: 80px 0;
+        }
+        
+        .demo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .demo-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .demo-card:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .demo-controls {
+            margin-top: 20px;
+        }
+        
+        .demo-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .demo-result {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            min-height: 80px;
+            border-left: 4px solid var(--accent);
+        }
+        
         .phase-section {
             margin: 60px 0;
         }
@@ -449,7 +501,200 @@
             background-color: #f9f9f9;
         }
         
-        /* RESPONSIVE */
+        .compliance-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-compliant {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-noncompliant {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        
+        .badge-pending {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+        
+        /* Live Demo Overlay */
+        .demo-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .demo-overlay.active {
+            display: flex;
+        }
+        
+        .demo-modal {
+            width: 90%;
+            max-width: 800px;
+            height: 80%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .demo-modal-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .demo-modal-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        
+        /* 3D Viewer Demo */
+        .viewer-3d-demo {
+            height: 300px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        /* AR Demo */
+        .ar-demo {
+            height: 300px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .ar-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        /* Blockchain Demo */
+        .blockchain-demo {
+            height: 300px;
+            background: linear-gradient(45deg, #8B5CF6, #6366F1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .block-node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            animation: floatNode 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatNode {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.2); }
+        }
+        
+        /* Shipping Map Demo */
+        .shipping-map-demo {
+            height: 300px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .ship-icon {
+            position: absolute;
+            font-size: 2rem;
+            animation: moveShip 10s linear infinite;
+        }
+        
+        @keyframes moveShip {
+            0% { left: 10%; top: 50%; }
+            50% { left: 50%; top: 30%; }
+            100% { left: 90%; top: 50%; }
+        }
+        
+        /* Carbon Calculator Demo */
+        .carbon-calculator-demo {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .carbon-input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .carbon-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .carbon-result {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid var(--accent);
+        }
+        
+        .carbon-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        /* Responsive */
         @media (max-width: 992px) {
             .header-container {
                 flex-direction: column;
@@ -463,6 +708,10 @@
             
             .features-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .demo-container {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -481,6 +730,15 @@
             .comparison-table {
                 display: block;
                 overflow-x: auto;
+            }
+            
+            .demo-modal {
+                width: 95%;
+                height: 90%;
+            }
+            
+            .carbon-input-group {
+                flex-direction: column;
             }
         }
     </style>
@@ -508,10 +766,6 @@
             </nav>
             
             <div class="nav-buttons">
-                <a href="#" class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">3</span>
-                </a>
                 <a href="#" class="btn btn-outline"><i class="fas fa-user"></i> Sign In</a>
                 <a href="dashboard.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Dashboard</a>
             </div>
@@ -526,8 +780,8 @@
         </div>
     </section>
 
-    <!-- Features Categories -->
-    <section class="features-categories">
+    <!-- Features Section -->
+    <section class="features-section">
         <div class="container">
             <div class="category-tabs">
                 <div class="category-tab active" data-category="all">
@@ -559,44 +813,26 @@
                 </div>
                 
                 <div class="features-grid">
-                    <!-- Feature 1 -->
-                    <div class="feature-card" data-category="commerce">
+                    <!-- Holographic 3D Product Displays -->
+                    <a href="products.html#3d-viewer" class="feature-card" data-category="3d" id="holographic3dCard">
                         <div class="feature-header">
                             <div>
                                 <div class="feature-icon">
-                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="fas fa-cube"></i>
                                 </div>
-                                <h3>Product Catalog</h3>
+                                <h3>Holographic 3D Product Displays</h3>
                             </div>
-                            <span class="feature-badge badge-commerce">Commerce</span>
+                            <span class="feature-badge badge-3d">3D & AR</span>
                         </div>
-                        <p>Complete product catalog with categories, filtering, and search functionality.</p>
+                        <p>Gyroscope-controlled 3D product visualization with holographic effects.</p>
                         <div class="feature-status">
                             <i class="fas fa-check-circle status-available"></i>
-                            <span class="status-available">Available Now</span>
+                            <span class="status-available">Click to try 3D viewer →</span>
                         </div>
-                    </div>
+                    </a>
                     
-                    <!-- Feature 2 -->
-                    <div class="feature-card" data-category="commerce">
-                        <div class="feature-header">
-                            <div>
-                                <div class="feature-icon">
-                                    <i class="fas fa-credit-card"></i>
-                                </div>
-                                <h3>Payment Integration</h3>
-                            </div>
-                            <span class="feature-badge badge-commerce">Commerce</span>
-                        </div>
-                        <p>Visa, M-Pesa, Airtel Money, and cash on delivery payment options.</p>
-                        <div class="feature-status">
-                            <i class="fas fa-check-circle status-available"></i>
-                            <span class="status-available">Available Now</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Feature 3 -->
-                    <div class="feature-card" data-category="ai">
+                    <!-- Smart Product Recommender AI -->
+                    <a href="ai-tools.html#recommender" class="feature-card" data-category="ai" id="smartRecommenderCard">
                         <div class="feature-header">
                             <div>
                                 <div class="feature-icon">
@@ -606,12 +842,84 @@
                             </div>
                             <span class="feature-badge badge-ai">AI</span>
                         </div>
-                        <p>Personalized product suggestions based on customer behavior.</p>
+                        <p>Personalized product suggestions based on customer behavior and preferences.</p>
                         <div class="feature-status">
                             <i class="fas fa-check-circle status-available"></i>
-                            <span class="status-available">Available Now</span>
+                            <span class="status-available">Click to try AI recommender →</span>
                         </div>
-                    </div>
+                    </a>
+                    
+                    <!-- Real-time Inventory Heat Map -->
+                    <a href="dashboard.html#inventory" class="feature-card" data-category="logistics" id="inventoryHeatmapCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <h3>Real-time Inventory Heat Map</h3>
+                            </div>
+                            <span class="feature-badge badge-logistics">Logistics</span>
+                        </div>
+                        <p>Visualize stock levels across Dar es Salaam warehouses in real-time.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">View in Dashboard →</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Bulk Order Simulator -->
+                    <a href="ai-tools.html#bulk-simulator" class="feature-card" data-category="ai" id="bulkSimulatorCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3>Bulk Order Simulator</h3>
+                            </div>
+                            <span class="feature-badge badge-ai">AI</span>
+                        </div>
+                        <p>Predictive pricing AI for bulk orders with cost optimization.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">Try bulk simulator →</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Product Comparison Matrix -->
+                    <a href="products.html#comparison" class="feature-card" data-category="3d" id="comparisonMatrixCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <h3>Product Comparison Matrix</h3>
+                            </div>
+                            <span class="feature-badge badge-3d">3D & AR</span>
+                        </div>
+                        <p>Compare products side-by-side with AR overlay and detailed specifications.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">Compare products →</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Seasonal Availability Calendar -->
+                    <a href="products.html#calendar" class="feature-card" data-category="commerce" id="seasonalCalendarCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <h3>Seasonal Availability Calendar</h3>
+                            </div>
+                            <span class="feature-badge badge-commerce">Commerce</span>
+                        </div>
+                        <p>Check product availability with weather integration and seasonal trends.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-check-circle status-available"></i>
+                            <span class="status-available">View calendar →</span>
+                        </div>
+                    </a>
                 </div>
             </div>
             
@@ -624,8 +932,26 @@
                 </div>
                 
                 <div class="features-grid">
-                    <!-- Feature 4 -->
-                    <div class="feature-card" data-category="ai">
+                    <!-- Interactive Shipping Route Optimizer -->
+                    <a href="shipping.html#route-optimizer" class="feature-card" data-category="logistics" id="shippingOptimizerCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-route"></i>
+                                </div>
+                                <h3>Shipping Route Optimizer</h3>
+                            </div>
+                            <span class="feature-badge badge-logistics">Logistics</span>
+                        </div>
+                        <p>Live vessel tracking with AI-powered route optimization and congestion avoidance.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">Try in Shipping page →</span>
+                        </div>
+                    </a>
+                    
+                    <!-- AI Documentation Wizard -->
+                    <a href="ai-tools.html#document-wizard" class="feature-card" data-category="ai" id="documentationWizardCard">
                         <div class="feature-header">
                             <div>
                                 <div class="feature-icon">
@@ -638,45 +964,81 @@
                         <p>Automatically fill export/import documents with AI-powered data extraction.</p>
                         <div class="feature-status">
                             <i class="fas fa-clock status-development"></i>
-                            <span class="status-development">Q3 2024</span>
+                            <span class="status-development">Try document wizard →</span>
                         </div>
-                    </div>
+                    </a>
                     
-                    <!-- Feature 5 -->
-                    <div class="feature-card" data-category="ai">
+                    <!-- Real-time Port Congestion Heat Map -->
+                    <a href="shipping.html#port-congestion" class="feature-card" data-category="logistics" id="portCongestionCard">
                         <div class="feature-header">
                             <div>
                                 <div class="feature-icon">
-                                    <i class="fas fa-language"></i>
+                                    <i class="fas fa-map"></i>
                                 </div>
-                                <h3>Real-time Translation Chat</h3>
-                            </div>
-                            <span class="feature-badge badge-ai">AI</span>
-                        </div>
-                        <p>Communicate with customers in any language with live translation.</p>
-                        <div class="feature-status">
-                            <i class="fas fa-clock status-development"></i>
-                            <span class="status-development">Q3 2024</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Feature 6 -->
-                    <div class="feature-card" data-category="logistics">
-                        <div class="feature-header">
-                            <div>
-                                <div class="feature-icon">
-                                    <i class="fas fa-map-marked-alt"></i>
-                                </div>
-                                <h3>Real-time Inventory Heat Map</h3>
+                                <h3>Port Congestion Heat Map</h3>
                             </div>
                             <span class="feature-badge badge-logistics">Logistics</span>
                         </div>
-                        <p>Visualize stock levels across Dar es Salaam warehouses in real-time.</p>
+                        <p>Real-time visualization of port congestion levels across East Africa.</p>
                         <div class="feature-status">
                             <i class="fas fa-clock status-development"></i>
-                            <span class="status-development">Q3 2024</span>
+                            <span class="status-development">View port congestion →</span>
                         </div>
-                    </div>
+                    </a>
+                    
+                    <!-- Carbon Footprint Calculator -->
+                    <a href="shipping.html#carbon-calculator" class="feature-card" data-category="logistics" id="carbonCalculatorCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h3>Carbon Footprint Calculator</h3>
+                            </div>
+                            <span class="feature-badge badge-logistics">Logistics</span>
+                        </div>
+                        <p>Calculate shipping emissions with offset recommendations and sustainability tracking.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">Calculate emissions →</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Smart Logistics Cost Estimator -->
+                    <a href="shipping.html#cost-estimator" class="feature-card" data-category="logistics" id="logisticsEstimatorCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3>Smart Logistics Cost Estimator</h3>
+                            </div>
+                            <span class="feature-badge badge-logistics">Logistics</span>
+                        </div>
+                        <p>AI-powered cost calculations for shipping, customs, and logistics operations.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">Estimate costs →</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Document Processing Timeline -->
+                    <a href="blockchain.html#timeline" class="feature-card" data-category="blockchain" id="documentTimelineCard">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <h3>Document Processing Timeline</h3>
+                            </div>
+                            <span class="feature-badge badge-blockchain">Blockchain</span>
+                        </div>
+                        <p>Track document processing with blockchain verification and audit trail.</p>
+                        <div class="feature-status">
+                            <i class="fas fa-clock status-development"></i>
+                            <span class="status-development">View document timeline →</span>
+                        </div>
+                    </a>
                 </div>
             </div>
             
@@ -684,121 +1046,439 @@
             <div class="phase-section">
                 <div class="phase-title">
                     <div class="phase-number">3</div>
-                    <h2>Phase 3: Immersive Experience Features</h2>
-                    <span style="margin-left: auto; color: var(--warning); font-weight: 600;">Q4 2024</span>
+                    <h2>Phase 3: Advanced Integration Features</h2>
+                    <span style="margin-left: auto; color: var(--gray); font-weight: 600;">Q4 2024</span>
                 </div>
                 
                 <div class="features-grid">
-                    <!-- Feature 7 -->
-                    <div class="feature-card" data-category="3d">
-                        <div class="feature-header">
-                            <div>
-                                <div class="feature-icon">
-                                    <i class="fas fa-cube"></i>
-                                </div>
-                                <h3>3D Product Viewer</h3>
-                            </div>
-                            <span class="feature-badge badge-3d">3D & AR</span>
-                        </div>
-                        <p>Gyroscope-controlled 3D product visualization on mobile devices.</p>
-                        <div class="feature-status">
-                            <i class="fas fa-code-branch status-development"></i>
-                            <span class="status-development">Development</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Feature 8 -->
-                    <div class="feature-card" data-category="3d">
-                        <div class="feature-header">
-                            <div>
-                                <div class="feature-icon">
-                                    <i class="fas fa-vr-cardboard"></i>
-                                </div>
-                                <h3>AR Product Comparison</h3>
-                            </div>
-                            <span class="feature-badge badge-3d">3D & AR</span>
-                        </div>
-                        <p>Compare products side-by-side with augmented reality overlay.</p>
-                        <div class="feature-status">
-                            <i class="fas fa-code-branch status-development"></i>
-                            <span class="status-development">Development</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Feature 9 -->
+                    <!-- Predictive Demand Forecasting AI -->
                     <div class="feature-card" data-category="ai">
                         <div class="feature-header">
                             <div>
                                 <div class="feature-icon">
-                                    <i class="fas fa-chart-line"></i>
+                                    <i class="fas fa-chart-bar"></i>
                                 </div>
-                                <h3>Bulk Order Simulator</h3>
+                                <h3>Predictive Demand Forecasting AI</h3>
                             </div>
                             <span class="feature-badge badge-ai">AI</span>
                         </div>
-                        <p>Predictive pricing AI for bulk orders with cost optimization.</p>
+                        <p>Machine learning models predicting product demand with 95% accuracy.</p>
                         <div class="feature-status">
-                            <i class="fas fa-code-branch status-development"></i>
-                            <span class="status-development">Development</span>
+                            <i class="far fa-clock status-planned"></i>
+                            <span class="status-planned">Planned for Q4 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Blockchain Smart Contracts -->
+                    <div class="feature-card" data-category="blockchain">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-contract"></i>
+                                </div>
+                                <h3>Blockchain Smart Contracts</h3>
+                            </div>
+                            <span class="feature-badge badge-blockchain">Blockchain</span>
+                        </div>
+                        <p>Automated contract execution with Ethereum blockchain integration.</p>
+                        <div class="feature-status">
+                            <i class="far fa-clock status-planned"></i>
+                            <span class="status-planned">Planned for Q4 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- AR Product Try-On -->
+                    <div class="feature-card" data-category="3d">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-mask"></i>
+                                </div>
+                                <h3>AR Product Try-On</h3>
+                            </div>
+                            <span class="feature-badge badge-3d">3D & AR</span>
+                        </div>
+                        <p>Virtual try-on for fashion and accessories using augmented reality.</p>
+                        <div class="feature-status">
+                            <i class="far fa-clock status-planned"></i>
+                            <span class="status-planned">Planned for Q4 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Commerce Assistant -->
+                    <div class="feature-card" data-category="ai">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                                <h3>Voice Commerce Assistant</h3>
+                            </div>
+                            <span class="feature-badge badge-ai">AI</span>
+                        </div>
+                        <p>Voice-enabled shopping assistant with Swahili and English support.</p>
+                        <div class="feature-status">
+                            <i class="far fa-clock status-planned"></i>
+                            <span class="status-planned">Planned for Q4 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Automated Compliance Checker -->
+                    <div class="feature-card" data-category="blockchain">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3>Automated Compliance Checker</h3>
+                            </div>
+                            <span class="feature-badge badge-blockchain">Blockchain</span>
+                        </div>
+                        <p>Real-time compliance verification with East African trade regulations.</p>
+                        <div class="feature-status">
+                            <i class="far fa-clock status-planned"></i>
+                            <span class="status-planned">Planned for Q4 2024</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Supply Chain Transparency Ledger -->
+                    <div class="feature-card" data-category="blockchain">
+                        <div class="feature-header">
+                            <div>
+                                <div class="feature-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <h3>Supply Chain Transparency Ledger</h3>
+                            </div>
+                            <span class="feature-badge badge-blockchain">Blockchain</span>
+                        </div>
+                        <p>Immutable blockchain ledger for complete supply chain traceability.</p>
+                        <div class="feature-status">
+                            <i class="far fa-clock status-planned"></i>
+                            <span class="status-planned">Planned for Q4 2024</span>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Feature Comparison Table -->
-            <div style="margin: 80px 0;">
-                <h2 style="text-align: center; margin-bottom: 40px;">Feature Comparison</h2>
-                <table class="comparison-table">
+            <!-- Interactive Demos Section -->
+            <div class="demo-section">
+                <h2 style="color: white; text-align: center;"><i class="fas fa-play-circle"></i> Try Feature Demos</h2>
+                <p style="text-align: center; opacity: 0.9;">Experience our advanced features with interactive demonstrations</p>
+                
+                <div class="demo-container">
+                    <!-- 3D Viewer Demo -->
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: white; margin: 0;">3D Product Viewer</h3>
+                                <small style="opacity: 0.8;">Holographic display demo</small>
+                            </div>
+                        </div>
+                        <p>Try our gyroscope-controlled 3D product visualization.</p>
+                        <div class="demo-controls">
+                            <div class="viewer-3d-demo" id="viewer3dDemo">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-mobile-alt" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                    <p>3D Product Viewer</p>
+                                    <small>Drag to rotate • Pinch to zoom</small>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;" id="try3dViewerBtn">
+                                <i class="fas fa-eye"></i> Try 3D Viewer
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- AR Comparison Demo -->
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">
+                                <i class="fas fa-vr-cardboard"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: white; margin: 0;">AR Product Comparison</h3>
+                                <small style="opacity: 0.8;">Augmented Reality demo</small>
+                            </div>
+                        </div>
+                        <p>Compare products side-by-side with AR overlay.</p>
+                        <div class="demo-controls">
+                            <div class="ar-demo" id="arDemo">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-expand-arrows-alt" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                    <p>AR Comparison Mode</p>
+                                    <small>Point camera at surface</small>
+                                </div>
+                                <div class="ar-overlay">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div>
+                                            <strong>Tecno Spark 10 Pro</strong><br>
+                                            <small>TSH 450,000</small>
+                                        </div>
+                                        <div>
+                                            <strong>Samsung Galaxy A14</strong><br>
+                                            <small>TSH 520,000</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;" id="tryArComparisonBtn">
+                                <i class="fas fa-vr-cardboard"></i> Try AR Comparison
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blockchain Ledger Demo -->
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: white; margin: 0;">Blockchain Ledger Simulator</h3>
+                                <small style="opacity: 0.8;">Transaction visualization</small>
+                            </div>
+                        </div>
+                        <p>Watch blockchain transactions in real-time simulation.</p>
+                        <div class="demo-controls">
+                            <div class="blockchain-demo" id="blockchainDemo">
+                                <div style="text-align: center; z-index: 2;">
+                                    <i class="fas fa-link" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                    <p>Blockchain Network</p>
+                                    <small>Live transaction simulation</small>
+                                </div>
+                                <!-- Blockchain nodes -->
+                                <div class="block-node" style="top: 20%; left: 20%; animation-delay: 0s;"></div>
+                                <div class="block-node" style="top: 40%; left: 50%; animation-delay: 0.5s;"></div>
+                                <div class="block-node" style="top: 70%; left: 30%; animation-delay: 1s;"></div>
+                                <div class="block-node" style="top: 30%; left: 70%; animation-delay: 1.5s;"></div>
+                                <div class="block-node" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;" id="tryBlockchainBtn">
+                                <i class="fas fa-link"></i> View Blockchain Ledger
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Shipping Route Optimizer Demo -->
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: white; margin: 0;">Shipping Route Optimizer</h3>
+                                <small style="opacity: 0.8;">Live route simulation</small>
+                            </div>
+                        </div>
+                        <p>Visualize optimized shipping routes with real-time data.</p>
+                        <div class="demo-controls">
+                            <div class="shipping-map-demo" id="shippingMapDemo">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-ship ship-icon"></i>
+                                    <p>Shipping Route Map</p>
+                                    <small>Dar → Mombasa → Dubai</small>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <input type="text" class="demo-input" placeholder="From: Dar es Salaam" value="Dar es Salaam">
+                                <input type="text" class="demo-input" placeholder="To: Dubai" value="Dubai">
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" id="optimizeRouteBtn">
+                                <i class="fas fa-route"></i> Optimize Route
+                            </button>
+                            <div class="demo-result" id="routeResult">
+                                <strong>Optimized Route:</strong><br>
+                                Dar → Mombasa (2 days) → Dubai (5 days)<br>
+                                <small>Total: 7 days • Cost: $1,850</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carbon Calculator Demo -->
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: white; margin: 0;">Carbon Calculator</h3>
+                                <small style="opacity: 0.8;">Emission calculation</small>
+                            </div>
+                        </div>
+                        <p>Calculate carbon footprint for your shipments.</p>
+                        <div class="demo-controls">
+                            <div class="carbon-calculator-demo" id="carbonCalculatorDemo">
+                                <div class="carbon-input-group">
+                                    <input type="text" class="carbon-input" placeholder="From" value="Dar es Salaam">
+                                    <input type="text" class="carbon-input" placeholder="To" value="Dubai">
+                                </div>
+                                <div class="carbon-input-group">
+                                    <input type="number" class="carbon-input" placeholder="Weight (kg)" value="1000">
+                                    <select class="carbon-input">
+                                        <option>Sea Freight</option>
+                                        <option>Air Freight</option>
+                                        <option>Land Transport</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" style="width: 100%;" id="calculateCarbonBtn">
+                                    <i class="fas fa-calculator"></i> Calculate Emissions
+                                </button>
+                                <div class="carbon-result" id="carbonResult">
+                                    <small>Carbon Emissions</small>
+                                    <div class="carbon-value">425 kg</div>
+                                    <small>CO₂ equivalent for 1000kg shipment</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Recommender Demo -->
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: white; margin: 0;">AI Product Recommender</h3>
+                                <small style="opacity: 0.8;">Personalized suggestions</small>
+                            </div>
+                        </div>
+                        <p>Get AI-powered product recommendations based on preferences.</p>
+                        <div class="demo-controls">
+                            <input type="text" class="demo-input" placeholder="Enter product or interest" value="Smartphone">
+                            <button class="btn btn-primary" style="width: 100%;" id="getRecommendationsBtn">
+                                <i class="fas fa-lightbulb"></i> Get AI Recommendations
+                            </button>
+                            <div class="demo-result" id="aiRecommenderResult">
+                                <strong>AI Recommendations:</strong><br>
+                                1. Tecno Spark 10 Pro (TSH 450,000)<br>
+                                2. Samsung Galaxy A14 (TSH 520,000)<br>
+                                3. Infinix Hot 30i (TSH 380,000)<br>
+                                <small>Based on your interest in smartphones</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Standards & Compliance Section -->
+            <div class="phase-section">
+                <div class="phase-title">
+                    <i class="fas fa-shield-alt" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <h2>Standards Compliance & Comparison</h2>
+                </div>
+                
+                <p style="margin-bottom: 30px;">Mzuri Stores complies with international trade and technology standards. Below is a comparison with leading industry platforms:</p>
+                
+                <div class="comparison-table">
                     <thead>
                         <tr>
-                            <th>Feature</th>
-                            <th>Category</th>
-                            <th>Phase</th>
-                            <th>Status</th>
-                            <th>Complexity</th>
+                            <th>Feature / Standard</th>
+                            <th>Mzuri Stores</th>
+                            <th>IBM Sterling</th>
+                            <th>SAP Ariba</th>
+                            <th>Oracle SCM</th>
+                            <th>Flexport</th>
+                            <th>TradeLens</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>3D Product Viewer</td>
-                            <td><span class="feature-badge badge-3d">3D & AR</span></td>
-                            <td>Phase 3</td>
-                            <td><span class="status-development">Development</span></td>
-                            <td>Advanced</td>
+                            <td><strong>Blockchain Integration</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
                         </tr>
                         <tr>
-                            <td>Blockchain Verifier</td>
-                            <td><span class="feature-badge badge-blockchain">Blockchain</span></td>
-                            <td>Phase 4</td>
-                            <td><span class="status-planned">Planned</span></td>
-                            <td>Enterprise</td>
+                            <td><strong>3D/AR Commerce</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
                         </tr>
                         <tr>
-                            <td>AI Recommender</td>
-                            <td><span class="feature-badge badge-ai">AI</span></td>
-                            <td>Phase 1</td>
-                            <td><span class="status-available">Available</span></td>
-                            <td>Basic</td>
+                            <td><strong>AI-Powered Logistics</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Advanced</span></td>
+                            <td><span class="compliance-badge badge-compliant">Basic</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-compliant">Basic</span></td>
+                            <td><span class="compliance-badge badge-compliant">Advanced</span></td>
+                            <td><span class="compliance-badge badge-compliant">Basic</span></td>
                         </tr>
                         <tr>
-                            <td>Shipping Optimizer</td>
-                            <td><span class="feature-badge badge-logistics">Logistics</span></td>
-                            <td>Phase 4</td>
-                            <td><span class="status-planned">Planned</span></td>
-                            <td>Enterprise</td>
+                            <td><strong>East Africa Compliance</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real-time Tracking</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carbon Emission Tracking</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile-First Design</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-pending">Partial</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Swahili Language Support</strong></td>
+                            <td><span class="compliance-badge badge-compliant">Full</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
+                            <td><span class="compliance-badge badge-noncompliant">None</span></td>
                         </tr>
                     </tbody>
-                </table>
-            </div>
-            
-            <!-- CTA Section -->
-            <div style="text-align: center; padding: 60px 0;">
-                <h2>Ready to Power Your Business?</h2>
-                <p style="max-width: 800px; margin: 0 auto 30px;">Start with our Phase 1 features today and upgrade as we release new capabilities.</p>
-                <a href="dashboard.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Get Started with Dashboard</a>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Live Demo Overlay -->
+    <div class="demo-overlay" id="demoOverlay">
+        <div class="demo-modal">
+            <div class="demo-modal-header">
+                <h3 style="color: white; margin: 0;" id="demoModalTitle">3D Product Viewer Demo</h3>
+                <button class="btn btn-outline" style="color: white; border-color: white;" id="closeDemoBtn">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+            <div class="demo-modal-content" id="demoModalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -806,15 +1486,15 @@
             <div class="footer-container">
                 <div class="footer-column">
                     <h4>Mzuri Stores</h4>
-                    <p>Dar es Salaam's premier AI-powered e-commerce platform with integrated payment solutions and advanced business intelligence.</p>
+                    <p>Revolutionizing East African commerce with AI, Blockchain, and 3D technology.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
@@ -822,69 +1502,53 @@
                         <li><a href="products.html">Products</a></li>
                         <li><a href="features.html">Features</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
-                    <h4>Feature Categories</h4>
+                    <h4>Technology</h4>
                     <ul class="footer-links">
-                        <li><a href="features.html#ai">AI Features</a></li>
-                        <li><a href="features.html#blockchain">Blockchain</a></li>
-                        <li><a href="features.html#3d">3D & AR</a></li>
-                        <li><a href="features.html#logistics">Logistics</a></li>
-                        <li><a href="ai-tools.html">All AI Tools</a></li>
+                        <li><a href="ai-tools.html">AI Tools</a></li>
+                        <li><a href="blockchain.html">Blockchain</a></li>
+                        <li><a href="products.html#3d-viewer">3D & AR</a></li>
+                        <li><a href="shipping.html#route-optimizer">Logistics AI</a></li>
+                        <li><a href="contact.html">API Documentation</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
-                    <h4>Contact Us</h4>
+                    <h4>Contact</h4>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Samora Avenue, Dar es Salaam</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</li>
                         <li><i class="fas fa-phone"></i> +255 123 456 789</li>
-                        <li><i class="fas fa-envelope"></i> info@mzuristores.co.tz</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                        <li><i class="fas fa-envelope"></i> info@mzuristores.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM EAT</li>
                     </ul>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>&copy; 2024 Mzuri Stores. All rights reserved. | Built with React/Next.js, Node.js, PostgreSQL & AWS</p>
-                <p>Phase 1 MVP Complete | Phase 2 Development in Progress</p>
+                <p>&copy; 2024 Mzuri Stores. All rights reserved. | Built with AI & Blockchain Technology</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Active page highlighting
+        // Category Filtering
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('nav a');
-            
-            navLinks.forEach(link => {
-                const linkPage = link.getAttribute('href');
-                if (linkPage === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            
-            // Category filtering
             const categoryTabs = document.querySelectorAll('.category-tab');
             const featureCards = document.querySelectorAll('.feature-card');
             
             categoryTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Update active tab
+                    // Remove active class from all tabs
                     categoryTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
                     this.classList.add('active');
                     
-                    const category = this.getAttribute('data-category');
+                    const category = this.dataset.category;
                     
-                    // Filter features
+                    // Show/hide feature cards based on category
                     featureCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                        if (category === 'all' || card.dataset.category === category) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
@@ -893,24 +1557,307 @@
                 });
             });
             
-            // Add interactive hover effects
-            featureCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    const icon = this.querySelector('.feature-icon i');
-                    const colors = ['#2A5C9A', '#E67E22', '#27AE60', '#9b59b6', '#E74C3C'];
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    icon.style.color = randomColor;
-                    icon.style.transform = 'scale(1.1)';
-                    icon.style.transition = 'all 0.3s ease';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    const icon = this.querySelector('.feature-icon i');
-                    icon.style.color = '';
-                    icon.style.transform = 'scale(1)';
-                });
+            // Demo Overlay Controls
+            const demoOverlay = document.getElementById('demoOverlay');
+            const closeDemoBtn = document.getElementById('closeDemoBtn');
+            const demoModalTitle = document.getElementById('demoModalTitle');
+            const demoModalContent = document.getElementById('demoModalContent');
+            
+            // Close demo overlay
+            closeDemoBtn.addEventListener('click', function() {
+                demoOverlay.classList.remove('active');
             });
+            
+            // Close overlay when clicking outside modal
+            demoOverlay.addEventListener('click', function(e) {
+                if (e.target === demoOverlay) {
+                    demoOverlay.classList.remove('active');
+                }
+            });
+            
+            // Demo button event listeners
+            const demoButtons = [
+                { id: 'try3dViewerBtn', title: '3D Product Viewer Demo', type: '3d' },
+                { id: 'tryArComparisonBtn', title: 'AR Product Comparison Demo', type: 'ar' },
+                { id: 'tryBlockchainBtn', title: 'Blockchain Ledger Demo', type: 'blockchain' },
+                { id: 'optimizeRouteBtn', title: 'Shipping Route Optimizer', type: 'shipping' },
+                { id: 'calculateCarbonBtn', title: 'Carbon Calculator', type: 'carbon' },
+                { id: 'getRecommendationsBtn', title: 'AI Product Recommender', type: 'ai' }
+            ];
+            
+            demoButtons.forEach(button => {
+                const btnElement = document.getElementById(button.id);
+                if (btnElement) {
+                    btnElement.addEventListener('click', function() {
+                        openDemoModal(button.title, button.type);
+                    });
+                }
+            });
+            
+            function openDemoModal(title, type) {
+                demoModalTitle.textContent = title;
+                demoModalContent.innerHTML = getDemoContent(type);
+                demoOverlay.classList.add('active');
+            }
+            
+            function getDemoContent(type) {
+                switch(type) {
+                    case '3d':
+                        return `
+                            <h3>Interactive 3D Product Viewer</h3>
+                            <p>Experience our advanced 3D product visualization technology:</p>
+                            <div style="background: linear-gradient(45deg, #1a1a2e, #16213e); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; margin: 20px 0;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-mobile-alt" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                    <h4>3D Product Viewer Active</h4>
+                                    <p>Drag to rotate • Pinch to zoom • Tap for details</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin: 20px 0;">
+                                <button class="btn btn-primary" onclick="rotateProduct('left')">
+                                    <i class="fas fa-rotate-left"></i> Rotate Left
+                                </button>
+                                <button class="btn btn-primary" onclick="rotateProduct('right')">
+                                    <i class="fas fa-rotate-right"></i> Rotate Right
+                                </button>
+                                <button class="btn btn-outline" onclick="zoomProduct('in')">
+                                    <i class="fas fa-search-plus"></i> Zoom In
+                                </button>
+                                <button class="btn btn-outline" onclick="zoomProduct('out')">
+                                    <i class="fas fa-search-minus"></i> Zoom Out
+                                </button>
+                            </div>
+                            <div class="demo-result">
+                                <strong>Current Product:</strong> Tecno Spark 10 Pro<br>
+                                <strong>View Mode:</strong> 3D Interactive<br>
+                                <strong>Controls:</strong> Touch/Mouse enabled
+                            </div>
+                        `;
+                    case 'ar':
+                        return `
+                            <h3>AR Product Comparison Demo</h3>
+                            <p>Compare products in augmented reality:</p>
+                            <div style="background: linear-gradient(45deg, #667eea, #764ba2); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; margin: 20px 0; position: relative;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-vr-cardboard" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                    <h4>AR Mode Active</h4>
+                                    <p>Point camera at a flat surface to place products</p>
+                                </div>
+                                <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(0,0,0,0.7); color: white; padding: 15px; border-radius: 10px;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div>
+                                            <strong>Tecno Spark 10 Pro</strong><br>
+                                            <small>TSH 450,000</small><br>
+                                            <small>Camera: 50MP • RAM: 8GB</small>
+                                        </div>
+                                        <div>
+                                            <strong>Samsung Galaxy A14</strong><br>
+                                            <small>TSH 520,000</small><br>
+                                            <small>Camera: 48MP • RAM: 6GB</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin: 20px 0;">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-camera"></i> Scan Surface
+                                </button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-exchange-alt"></i> Swap Products
+                                </button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-ruler-combined"></i> Show Dimensions
+                                </button>
+                            </div>
+                            <div class="demo-result">
+                                <strong>AR Features:</strong> Real-time comparison, size visualization, environment mapping<br>
+                                <strong>Requirements:</strong> Mobile device with camera
+                            </div>
+                        `;
+                    case 'blockchain':
+                        return `
+                            <h3>Blockchain Ledger Simulation</h3>
+                            <p>Live blockchain transaction visualization:</p>
+                            <div style="background: linear-gradient(45deg, #8B5CF6, #6366F1); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; margin: 20px 0; position: relative; overflow: hidden;">
+                                <div style="text-align: center; z-index: 2;">
+                                    <i class="fas fa-link" style="font-size: 4rem; margin-bottom: 15px;"></i>
+                                    <h4>Blockchain Network Active</h4>
+                                    <p>Live transaction simulation running</p>
+                                </div>
+                                <div style="position: absolute; top: 20%; left: 20%; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); animation: floatNode 3s ease-in-out infinite;"></div>
+                                <div style="position: absolute; top: 40%; left: 50%; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); animation: floatNode 3s ease-in-out infinite; animation-delay: 0.5s;"></div>
+                                <div style="position: absolute; top: 70%; left: 30%; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); animation: floatNode 3s ease-in-out infinite; animation-delay: 1s;"></div>
+                            </div>
+                            <div style="margin: 20px 0;">
+                                <h4>Recent Transactions</h4>
+                                <div style="background: #f5f5f5; border-radius: 5px; padding: 15px; margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Order #TZ-2024-001</span>
+                                        <span style="color: var(--success);">Confirmed ✓</span>
+                                    </div>
+                                    <small>Block: #187654 • Hash: 0x8a3f...c2d1</small>
+                                </div>
+                                <div style="background: #f5f5f5; border-radius: 5px; padding: 15px; margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Shipment #DSM-DXB-045</span>
+                                        <span style="color: var(--warning);">Pending ⏳</span>
+                                    </div>
+                                    <small>Block: #187655 • Mining in progress...</small>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="addTransaction()">
+                                <i class="fas fa-plus"></i> Simulate New Transaction
+                            </button>
+                        `;
+                    default:
+                        return `<p>Demo content coming soon...</p>`;
+                }
+            }
+            
+            // Carbon Calculator Interactive
+            const calculateCarbonBtn = document.getElementById('calculateCarbonBtn');
+            if (calculateCarbonBtn) {
+                calculateCarbonBtn.addEventListener('click', function() {
+                    const weight = document.querySelector('.carbon-input[type="number"]').value || 1000;
+                    const emissions = Math.round(weight * 0.425);
+                    document.getElementById('carbonResult').innerHTML = `
+                        <small>Carbon Emissions</small>
+                        <div class="carbon-value">${emissions} kg</div>
+                        <small>CO₂ equivalent for ${weight}kg shipment</small>
+                        <div style="margin-top: 10px; font-size: 0.8rem; color: var(--accent);">
+                            <i class="fas fa-tree"></i> Equivalent to ${Math.round(emissions/21)} trees needed to offset
+                        </div>
+                    `;
+                });
+            }
+            
+            // AI Recommender Interactive
+            const getRecommendationsBtn = document.getElementById('getRecommendationsBtn');
+            if (getRecommendationsBtn) {
+                getRecommendationsBtn.addEventListener('click', function() {
+                    const input = document.querySelector('.demo-input[placeholder*="product or interest"]').value || 'Smartphone';
+                    const recommendations = getAIRecommendations(input);
+                    document.getElementById('aiRecommenderResult').innerHTML = `
+                        <strong>AI Recommendations for "${input}":</strong><br>
+                        ${recommendations.map((rec, i) => `${i+1}. ${rec.name} (${rec.price})`).join('<br>')}
+                        <br><small>Based on your interest and similar customer preferences</small>
+                    `;
+                });
+            }
+            
+            function getAIRecommendations(query) {
+                const recommendations = {
+                    'smartphone': [
+                        { name: 'Tecno Spark 10 Pro', price: 'TSH 450,000' },
+                        { name: 'Samsung Galaxy A14', price: 'TSH 520,000' },
+                        { name: 'Infinix Hot 30i', price: 'TSH 380,000' },
+                        { name: 'iPhone 11 Refurbished', price: 'TSH 850,000' }
+                    ],
+                    'laptop': [
+                        { name: 'HP 15s Laptop', price: 'TSH 1,200,000' },
+                        { name: 'Dell Inspiron 15', price: 'TSH 1,450,000' },
+                        { name: 'Lenovo IdeaPad 3', price: 'TSH 980,000' }
+                    ],
+                    'electronics': [
+                        { name: 'Samsung 43" Smart TV', price: 'TSH 750,000' },
+                        { name: 'JBL Bluetooth Speaker', price: 'TSH 120,000' },
+                        { name: 'Canon EOS Camera', price: 'TSH 1,800,000' }
+                    ]
+                };
+                
+                query = query.toLowerCase();
+                for (const category in recommendations) {
+                    if (query.includes(category)) {
+                        return recommendations[category];
+                    }
+                }
+                return recommendations.smartphone;
+            }
+            
+            // Route Optimizer Interactive
+            const optimizeRouteBtn = document.getElementById('optimizeRouteBtn');
+            if (optimizeRouteBtn) {
+                optimizeRouteBtn.addEventListener('click', function() {
+                    const from = document.querySelector('.demo-input[placeholder*="From"]').value || 'Dar es Salaam';
+                    const to = document.querySelector('.demo-input[placeholder*="To"]').value || 'Dubai';
+                    
+                    const routes = {
+                        'dar-dubai': { days: 7, cost: 1850 },
+                        'dar-mombasa': { days: 2, cost: 450 },
+                        'dar-nairobi': { days: 3, cost: 320 },
+                        'default': { days: Math.floor(Math.random() * 10) + 5, cost: Math.floor(Math.random() * 2000) + 1000 }
+                    };
+                    
+                    const key = `${from.toLowerCase().split(' ')[0]}-${to.toLowerCase().split(' ')[0]}`;
+                    const route = routes[key] || routes.default;
+                    
+                    document.getElementById('routeResult').innerHTML = `
+                        <strong>Optimized Route:</strong><br>
+                        ${from} → ${to}<br>
+                        <strong>Duration:</strong> ${route.days} days<br>
+                        <strong>Estimated Cost:</strong> $${route.cost}<br>
+                        <small>Optimized using AI algorithms and real-time data</small>
+                    `;
+                });
+            }
+            
+            // Initialize animations
+            function initializeAnimations() {
+                // Add floating nodes to blockchain demo
+                const blockchainDemo = document.getElementById('blockchainDemo');
+                if (blockchainDemo) {
+                    for (let i = 0; i < 8; i++) {
+                        const node = document.createElement('div');
+                        node.className = 'block-node';
+                        node.style.top = `${Math.random() * 80 + 10}%`;
+                        node.style.left = `${Math.random() * 80 + 10}%`;
+                        node.style.animationDelay = `${Math.random() * 2}s`;
+                        blockchainDemo.appendChild(node);
+                    }
+                }
+            }
+            
+            initializeAnimations();
         });
+        
+        // Global functions for demo controls
+        function rotateProduct(direction) {
+            const viewer = document.querySelector('#demoModalContent [style*="background: linear-gradient"]');
+            if (viewer) {
+                viewer.style.transform = direction === 'left' ? 'rotateY(-15deg)' : 'rotateY(15deg)';
+                setTimeout(() => {
+                    viewer.style.transform = 'rotateY(0deg)';
+                }, 300);
+            }
+        }
+        
+        function zoomProduct(action) {
+            const viewer = document.querySelector('#demoModalContent [style*="background: linear-gradient"]');
+            if (viewer) {
+                const currentScale = parseFloat(viewer.style.transform?.match(/scale\(([^)]+)\)/)?.[1]) || 1;
+                const newScale = action === 'in' ? currentScale * 1.2 : currentScale * 0.8;
+                viewer.style.transform = `scale(${newScale})`;
+            }
+        }
+        
+        function addTransaction() {
+            const transactionsContainer = document.querySelector('#demoModalContent [style*="Recent Transactions"]');
+            if (transactionsContainer) {
+                const newTransaction = document.createElement('div');
+                newTransaction.style.background = '#f5f5f5';
+                newTransaction.style.borderRadius = '5px';
+                newTransaction.style.padding = '15px';
+                newTransaction.style.margin = '10px 0';
+                newTransaction.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>New Transaction #${Math.floor(Math.random() * 10000)}</span>
+                        <span style="color: var(--success);">Added ✓</span>
+                    </div>
+                    <small>Block: #${Math.floor(Math.random() * 100000) + 180000} • Hash: 0x${Math.random().toString(16).substr(2, 8)}...</small>
+                `;
+                transactionsContainer.appendChild(newTransaction);
+            }
+        }
     </script>
 </body>
 </html>
